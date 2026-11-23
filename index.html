@@ -35,152 +35,4693 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}
 .empty{color:var(--muted);font-size:13px;padding:15px 0}
 @media(max-width:900px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2{grid-template-columns:1fr}}
 @media(max-width:540px){main{padding:18px 4%}.cards{grid-template-columns:1fr 1fr}.card{padding:13px}.card .num{font-size:19px}form .fields{grid-template-columns:1fr}.full{grid-column:auto}header{padding:18px 4%}}
+
+
+/* DIGITAL AGENT WALLET - DASHBOARD DESIGN UPGRADE */
+
+body {
+  background: #f1f5f9;
+  color: #172536;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+header {
+  background: linear-gradient(120deg, #10243a, #1769aa);
+  padding: 25px 5%;
+  box-shadow: 0 4px 15px #10243a18;
+}
+
+header h1 {
+  font-size: 25px;
+  letter-spacing: .3px;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 14px 5%;
+  box-shadow: 0 3px 12px #10243a0b;
+}
+
+nav button {
+  transition: .2s ease;
+}
+
+nav button:hover {
+  background: #dbeafe;
+  color: #1769aa;
+}
+
+nav button.active {
+  background: #1769aa;
+  box-shadow: 0 3px 8px #1769aa30;
+}
+
+main {
+  padding-top: 32px;
+  padding-bottom: 40px;
+}
+
+h2 {
+  color: #10243a;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.card, .panel {
+  border: 1px solid #e2e8f0;
+  border-radius: 15px;
+  box-shadow: 0 5px 18px #10243a08;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.card:hover, .panel:hover {
+  box-shadow: 0 8px 24px #10243a12;
+}
+
+.card .num {
+  color: #1769aa;
+  font-size: 28px;
+}
+
+.panel h3 {
+  color: #10243a;
+  font-size: 17px;
+}
+
+input, select, textarea {
+  border: 1px solid #d5deea;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #1769aa;
+  box-shadow: 0 0 0 3px #1769aa18;
+  outline: none;
+}
+
+button.primary {
+  background: #1769aa;
+  transition: background .2s ease;
+}
+
+button.primary:hover {
+  background: #10243a;
+}
+
+table th {
+  background: #edf3f9;
+  color: #10243a;
+}
+
+footer {
+  border-top: 1px solid #e2e8f0;
+  background: white;
+}
+
+@media(max-width: 600px) {
+  header h1 {
+    font-size: 21px;
+  }
+
+  nav {
+    position: relative;
+    padding: 12px 4%;
+  }
+
+  nav button {
+    flex: 1 1 auto;
+  }
+
+  main {
+    padding-top: 22px;
+  }
+}
+
+
+/* =========================================
+   DIGITAL AGENT WALLET - GLOBAL UI POLISH
+========================================= */
+
+/* General page layout */
+.page {
+  width: 100%;
+  animation: pageFadeIn .2s ease-in-out;
+}
+
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Dashboard and overview statistics */
+.stats-grid,
+.stats-cards,
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin: 18px 0 24px;
+}
+
+.stat-card,
+.metric-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 4px 14px rgba(16, 36, 58, .05);
+  min-width: 0;
+}
+
+.stat-card h3,
+.metric-card h3 {
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+
+.stat-card strong,
+.metric-card strong {
+  display: block;
+  color: #1769aa;
+  font-size: 25px;
+  overflow-wrap: anywhere;
+}
+
+/* Form layout */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+}
+
+form {
+  min-width: 0;
+}
+
+form .fields > div,
+.form-grid > div {
+  min-width: 0;
+}
+
+input,
+select,
+textarea {
+  max-width: 100%;
+  min-height: 42px;
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled,
+button:disabled {
+  cursor: not-allowed;
+  opacity: .6;
+  background-color: #e9edf2;
+}
+
+/* Search and filter toolbars */
+.table-toolbar,
+.filter-toolbar,
+.search-toolbar {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 15px 0;
+}
+
+.table-toolbar > *,
+.filter-toolbar > *,
+.search-toolbar > * {
+  flex: 1 1 180px;
+  min-width: 0;
+}
+
+/* Tables */
+.tablewrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+table td {
+  vertical-align: middle;
+}
+
+table tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* Status labels */
+.status-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.status-badge.pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-badge.approved,
+.status-badge.active,
+.status-badge.verified,
+.status-badge.completed,
+.status-badge.posted {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-badge.rejected,
+.status-badge.suspended,
+.status-badge.failed {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.status-badge.review,
+.status-badge.under-review {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+/* Buttons */
+button {
+  font: inherit;
+}
+
+button.primary,
+button.secondary,
+button.danger {
+  min-height: 40px;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(23, 105, 170, .25);
+  outline-offset: 2px;
+}
+
+/* Notices */
+.note,
+.warning,
+.demo {
+  line-height: 1.6;
+}
+
+/* Responsive layout */
+@media (max-width: 1000px) {
+  .stats-grid,
+  .stats-cards,
+  .stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  main {
+    padding-left: 4%;
+    padding-right: 4%;
+  }
+
+  .stats-grid,
+  .stats-cards,
+  .stat-grid,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card,
+  .metric-card {
+    padding: 15px;
+  }
+
+  .stat-card strong,
+  .metric-card strong {
+    font-size: 22px;
+  }
+
+  .table-toolbar,
+  .filter-toolbar,
+  .search-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .table-toolbar > *,
+  .filter-toolbar > *,
+  .search-toolbar > * {
+    width: 100%;
+    flex: 1 1 auto;
+  }
+
+  .actions {
+    flex-wrap: wrap;
+  }
+
+  .actions button {
+    flex: 1 1 auto;
+  }
+
+  nav button {
+    font-size: 12px;
+    padding: 10px;
+  }
+}
+
 </style>
 </head>
 <body>
+
 <header>
-  <div><h1>Digital Agent Wallet</h1><p>Controlled Transaction Management System · Template V1.0</p></div>
-  <div class="demo">DEMO ONLY — BA AININ REAL WALLET BA</div>
+  <div>
+    <h1>Digital Agent Wallet</h1>
+    <p>Controlled Transaction Management System · Template V1.0</p>
+  </div>
+
+  <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+    <span id="loggedInUser" style="font-size:13px; color:#cbd5e1;">
+      Logged in
+    </span>
+
+    <button
+      id="logoutButton"
+      type="button"
+      style="background:#dc2626;color:white;border:0;padding:10px 16px;border-radius:8px;font-weight:bold;cursor:pointer;"
+    >
+      Logout
+    </button>
+  </div>
 </header>
+
 <nav>
   <button class="active" data-page="dashboard">Dashboard</button>
+  <button data-page="agentWallet">Agent Wallet</button>
+  <button data-page="beneficiaryWallet">Beneficiary Wallet</button>
+  <button data-page="beneficiaryKyc">Beneficiary Verification & KYC</button>
+  <button data-page="programmes">Support Programmes</button>
+  <button data-page="disbursements">Disbursement Management</button>
+  <button data-page="auditLogs">Audit Logs</button>
+  <button data-page="notifications">Notifications & Alerts</button>
   <button data-page="agents">Agents</button>
+  <button data-page="users">User Management</button>
   <button data-page="transactions">Transactions</button>
   <button data-page="approvals">Approvals</button>
   <button data-page="reports">Reports</button>
   <button data-page="settings">Settings & Controls</button>
 </nav>
 <main>
+
 <section id="dashboard" class="page active">
-  <h2>Dashboard</h2><p class="sub">Takaitaccen halin agents da transactions.</p>
-  <div class="warning"><b>Important:</b> Wannan prototype ne na gwaji. Bayanan suna cikin browser ɗinka kawai. Ba ya aika ko karɓar kuɗi, kuma ba a haɗa shi da banki ko payment gateway ba.</div>
-  <div class="cards">
-    <div class="card"><div class="label">Total Agents</div><div class="num" id="totalAgents">0</div><small>Agents da aka yi rajista</small></div>
-    <div class="card"><div class="label">Pending Approvals</div><div class="num" id="pendingCount">0</div><small>Buƙatun da ke jiran dubawa</small></div>
-    <div class="card"><div class="label">Completed Demo Transactions</div><div class="num" id="completedCount">0</div><small>Gwajin transactions da aka amince</small></div>
-    <div class="card"><div class="label">Demo Ledger Balance</div><div class="num" id="ledgerBalance">₦0.00</div><small>Ƙididdigar gwaji kawai</small></div>
+
+  <h2>System Dashboard</h2>
+  <p class="sub">Central overview of Agent Wallet, Beneficiary Wallet, transactions and system operations.</p>
+
+  <div class="note">
+    <b>Live Data:</b> Dashboard metrics za su nuna bayanan database na ainihi bayan an haɗa backend. Ba a nuna demo figures ko ƙirƙirar balance a wannan mataki.
   </div>
-  <div class="panel"><h3>Recent Transactions</h3><div id="recentTransactions" class="empty">Babu transaction tukuna.</div></div>
+
+  <h3>Wallet Overview</h3>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="label">Total Agent Wallets</div>
+      <div class="num" id="dashAgentWallets">—</div>
+      <small>Registered agent accounts</small>
+    </div>
+
+    <div class="card">
+      <div class="label">Total Beneficiary Wallets</div>
+      <div class="num" id="dashBeneficiaryWallets">—</div>
+      <small>Registered beneficiary accounts</small>
+    </div>
+
+    <div class="card">
+      <div class="label">Agent Wallet Balance</div>
+      <div class="num" id="dashAgentBalance">—</div>
+      <small>Live balance in NGN</small>
+    </div>
+
+    <div class="card">
+      <div class="label">Beneficiary Wallet Balance</div>
+      <div class="num" id="dashBeneficiaryBalance">—</div>
+      <small>Live balance in NGN</small>
+    </div>
+
+  </div>
+
+  <h3>Operations Overview</h3>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="label">Pending Approvals</div>
+      <div class="num" id="dashPendingApprovals">—</div>
+      <small>Awaiting authorised review</small>
+    </div>
+
+    <div class="card">
+      <div class="label">Total Transactions</div>
+      <div class="num" id="dashTotalTransactions">—</div>
+      <small>Recorded transaction count</small>
+    </div>
+
+    <div class="card">
+      <div class="label">Active Agents</div>
+      <div class="num" id="dashActiveAgents">—</div>
+      <small>Verified active agents</small>
+    </div>
+
+    <div class="card">
+      <div class="label">Active Support Programmes</div>
+      <div class="num" id="dashActiveProgrammes">—</div>
+      <small>Currently active programmes</small>
+    </div>
+
+  </div>
+
+  <div class="grid2">
+
+    <div class="panel">
+      <h3>Recent Transactions</h3>
+      <div id="dashRecentTransactions" class="empty">
+        Live transaction records will appear here after database integration.
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Recent System Activities</h3>
+      <div id="dashRecentActivities" class="empty">
+        Authorised system activities will appear here after audit log integration.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <h3>System Status</h3>
+
+    <div class="grid2">
+
+      <div>
+        <label>Database Connection</label>
+        <div id="dashDatabaseStatus" class="status Pending">
+          Awaiting Backend Integration
+        </div>
+      </div>
+
+      <div>
+        <label>Payment Provider</label>
+        <div id="dashPaymentStatus" class="status Pending">
+          Not Yet Integrated
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </section>
+
+
+<section id="agentWallet" class="page">
+
+    <div class="page-header">
+        <div>
+            <h2>Agent Wallet Management</h2>
+            <p>Manage agent wallet accounts, monitor balances and review wallet activity.</p>
+        </div>
+        <span class="status-badge">Backend Integration Pending</span>
+    </div>
+
+    <!-- AGENT WALLET OVERVIEW -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-label">Total Agent Wallets</div>
+            <div class="stat-value" id="agentWalletTotal">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Active Wallets</div>
+            <div class="stat-value" id="agentWalletActive">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Total Wallet Balance</div>
+            <div class="stat-value" id="agentWalletBalance">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Suspended Wallets</div>
+            <div class="stat-value" id="agentWalletSuspended">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+    </div>
+
+    <!-- CREATE AGENT WALLET -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Create Agent Wallet</h3>
+            <p>Register a wallet account for an approved agent.</p>
+        </div>
+
+        <form id="agentWalletForm">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="walletAgentId">Agent ID</label>
+                    <input
+                        type="text"
+                        id="walletAgentId"
+                        name="agent_id"
+                        placeholder="Enter or select registered Agent ID"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="walletAgentName">Agent Full Name</label>
+                    <input
+                        type="text"
+                        id="walletAgentName"
+                        name="agent_name"
+                        placeholder="Agent name"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="walletPhone">Phone Number</label>
+                    <input
+                        type="tel"
+                        id="walletPhone"
+                        name="phone"
+                        placeholder="Agent phone number"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="walletCurrency">Wallet Currency</label>
+                    <select id="walletCurrency" name="currency" required>
+                        <option value="NGN">Nigerian Naira (NGN)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="walletAccountType">Account Type</label>
+                    <select id="walletAccountType" name="account_type" required>
+                        <option value="">Select account type</option>
+                        <option value="agent">Agent Wallet</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="walletStatus">Initial Wallet Status</label>
+                    <select id="walletStatus" name="status" required>
+                        <option value="pending">Pending Activation</option>
+                        <option value="active">Active</option>
+                        <option value="suspended">Suspended</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="walletNotes">Administrative Notes</label>
+                    <textarea
+                        id="walletNotes"
+                        name="notes"
+                        rows="3"
+                        placeholder="Optional administrative remarks"
+                    ></textarea>
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                    Create Agent Wallet
+                </button>
+
+                <button type="reset" class="btn btn-secondary">
+                    Clear Form
+                </button>
+            </div>
+
+            <p class="form-note">
+                Wallet creation and activation will be processed securely
+                through the backend after integration. No wallet or balance
+                will be created by this frontend form alone.
+            </p>
+
+        </form>
+    </div>
+
+    <!-- AGENT WALLET ACCOUNTS -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Agent Wallet Accounts</h3>
+            <p>View and manage registered agent wallet accounts.</p>
+        </div>
+
+        <div class="table-toolbar">
+            <input
+                type="search"
+                id="agentWalletSearch"
+                placeholder="Search by agent name, ID or wallet number..."
+            >
+
+            <select id="agentWalletFilter">
+                <option value="">All Wallet Statuses</option>
+                <option value="active">Active</option>
+                <option value="pending">Pending</option>
+                <option value="suspended">Suspended</option>
+            </select>
+        </div>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Wallet ID</th>
+                        <th>Agent Name</th>
+                        <th>Agent ID</th>
+                        <th>Phone</th>
+                        <th>Currency</th>
+                        <th>Balance</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="agentWalletTable">
+                    <tr>
+                        <td colspan="8" class="empty">
+                            Agent wallet records will appear here
+                            after backend integration.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- WALLET TRANSACTION HISTORY -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Agent Wallet Transaction History</h3>
+            <p>Review credits, debits and wallet transaction records.</p>
+        </div>
+
+        <div class="table-toolbar">
+            <input
+                type="search"
+                id="agentWalletTransactionSearch"
+                placeholder="Search transaction reference or agent..."
+            >
+
+            <select id="agentWalletTransactionType">
+                <option value="">All Transaction Types</option>
+                <option value="credit">Credit</option>
+                <option value="debit">Debit</option>
+            </select>
+
+            <select id="agentWalletTransactionStatus">
+                <option value="">All Transaction Statuses</option>
+                <option value="pending">Pending</option>
+                <option value="posted">Posted</option>
+                <option value="rejected">Rejected</option>
+                <option value="reversed">Reversed</option>
+            </select>
+        </div>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Transaction Reference</th>
+                        <th>Agent</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+
+                <tbody id="agentWalletTransactions">
+                    <tr>
+                        <td colspan="7" class="empty">
+                            Transaction history will appear here
+                            after backend integration.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>Wallet Security Notice</h3>
+        <p>
+            All wallet credits, debits, balance adjustments and reversals
+            must be authorized and recorded by the secure backend.
+            Posted transactions must have an auditable record.
+        </p>
+    </div>
+
+</section>
+
+
+<section id="beneficiaryWallet" class="page">
+
+    <div class="page-header">
+        <div>
+            <h2>Beneficiary Wallet Management</h2>
+            <p>Manage approved beneficiaries, wallet accounts and support disbursement records.</p>
+        </div>
+        <span class="status-badge">Backend Integration Pending</span>
+    </div>
+
+    <!-- BENEFICIARY WALLET OVERVIEW -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-label">Registered Beneficiaries</div>
+            <div class="stat-value" id="beneficiaryTotal">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Active Beneficiary Wallets</div>
+            <div class="stat-value" id="beneficiaryWalletActive">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Total Disbursed</div>
+            <div class="stat-value" id="beneficiaryTotalDisbursed">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Pending Disbursements</div>
+            <div class="stat-value" id="beneficiaryPending">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+    </div>
+
+    <!-- BENEFICIARY REGISTRATION -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Register Beneficiary</h3>
+            <p>Register an individual who may qualify for an approved support programme.</p>
+        </div>
+
+        <form id="beneficiaryForm">
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="beneficiaryId">Beneficiary ID</label>
+                    <input type="text" id="beneficiaryId" name="beneficiary_id"
+                        placeholder="Automatically assigned after integration" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="beneficiaryName">Full Name</label>
+                    <input type="text" id="beneficiaryName" name="full_name"
+                        placeholder="Enter full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="beneficiaryPhone">Phone Number</label>
+                    <input type="tel" id="beneficiaryPhone" name="phone"
+                        placeholder="Enter phone number" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="beneficiaryEmail">Email Address</label>
+                    <input type="email" id="beneficiaryEmail" name="email"
+                        placeholder="Optional email address">
+                </div>
+
+                <div class="form-group">
+                    <label for="beneficiaryState">State</label>
+                    <input type="text" id="beneficiaryState" name="state"
+                        placeholder="Enter state" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="beneficiaryLga">Local Government Area</label>
+                    <input type="text" id="beneficiaryLga" name="lga"
+                        placeholder="Enter LGA" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="beneficiaryWard">Ward</label>
+                    <input type="text" id="beneficiaryWard" name="ward"
+                        placeholder="Enter ward">
+                </div>
+
+                <div class="form-group">
+                    <label for="beneficiaryProgramme">Support Programme</label>
+                    <select id="beneficiaryProgramme" name="programme_id" required>
+                        <option value="">Select approved programme</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="beneficiaryEligibility">Eligibility Review</label>
+                    <select id="beneficiaryEligibility" name="eligibility_status" required>
+                        <option value="pending">Pending Review</option>
+                        <option value="under_review">Under Review</option>
+                        <option value="approved">Approved</option>
+                        <option value="rejected">Not Eligible</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="beneficiaryStatus">Beneficiary Status</label>
+                    <select id="beneficiaryStatus" name="status" required>
+                        <option value="pending">Pending</option>
+                        <option value="active">Active</option>
+                        <option value="suspended">Suspended</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="beneficiaryAddress">Residential Address</label>
+                    <textarea id="beneficiaryAddress" name="address" rows="3"
+                        placeholder="Enter residential address"></textarea>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="beneficiaryNotes">Administrative Notes</label>
+                    <textarea id="beneficiaryNotes" name="notes" rows="3"
+                        placeholder="Optional review notes"></textarea>
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                    Register Beneficiary
+                </button>
+                <button type="reset" class="btn btn-secondary">
+                    Clear Form
+                </button>
+            </div>
+
+            <p class="form-note">
+                Registration does not guarantee financial support. Eligibility
+                must be assessed using published, nonpartisan programme criteria.
+                Political affiliation, campaign participation and voting preference
+                must never determine access to humanitarian support.
+            </p>
+        </form>
+    </div>
+
+    <!-- BENEFICIARY DIRECTORY -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Beneficiary Directory</h3>
+            <p>Review beneficiary records and their approval status.</p>
+        </div>
+
+        <div class="table-toolbar">
+            <input type="search" id="beneficiarySearch"
+                placeholder="Search beneficiary name, ID or phone...">
+
+            <select id="beneficiaryStatusFilter">
+                <option value="">All Statuses</option>
+                <option value="pending">Pending</option>
+                <option value="active">Active</option>
+                <option value="suspended">Suspended</option>
+            </select>
+
+            <select id="beneficiaryEligibilityFilter">
+                <option value="">All Eligibility Statuses</option>
+                <option value="pending">Pending Review</option>
+                <option value="under_review">Under Review</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Not Eligible</option>
+            </select>
+        </div>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Beneficiary ID</th>
+                        <th>Full Name</th>
+                        <th>Phone</th>
+                        <th>LGA</th>
+                        <th>Programme</th>
+                        <th>Eligibility</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="beneficiaryTable">
+                    <tr>
+                        <td colspan="8" class="empty">
+                            Beneficiary records will appear here after backend integration.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- BENEFICIARY WALLET ACCOUNTS -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Beneficiary Wallet Accounts</h3>
+            <p>View wallet accounts belonging to approved beneficiaries.</p>
+        </div>
+
+        <div class="table-toolbar">
+            <input type="search" id="beneficiaryWalletSearch"
+                placeholder="Search beneficiary or wallet ID...">
+
+            <select id="beneficiaryWalletStatusFilter">
+                <option value="">All Wallet Statuses</option>
+                <option value="active">Active</option>
+                <option value="pending">Pending</option>
+                <option value="suspended">Suspended</option>
+            </select>
+        </div>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Wallet ID</th>
+                        <th>Beneficiary</th>
+                        <th>Beneficiary ID</th>
+                        <th>Programme</th>
+                        <th>Currency</th>
+                        <th>Available Balance</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="beneficiaryWalletTable">
+                    <tr>
+                        <td colspan="7" class="empty">
+                            Beneficiary wallet accounts will appear here after backend integration.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- SUPPORT DISBURSEMENT HISTORY -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Beneficiary Disbursement History</h3>
+            <p>Track approved support payments and their delivery status.</p>
+        </div>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Reference</th>
+                        <th>Beneficiary</th>
+                        <th>Programme</th>
+                        <th>Amount</th>
+                        <th>Payment Method</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="beneficiaryDisbursementTable">
+                    <tr>
+                        <td colspan="7" class="empty">
+                            Disbursement records will appear here after backend integration.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>Beneficiary Wallet Protection</h3>
+        <p>
+            Beneficiary wallets are separate from agent wallets. Only authorized
+            officers may approve eligible disbursements. Every payment must have
+            a transaction reference, approval record and audit trail. Beneficiary
+            funds must not be mixed with agent operational funds.
+        </p>
+    </div>
+
+</section>
+
 <section id="agents" class="page">
-  <h2>Agent Management</h2><p class="sub">Yi rajista da kula da agents.</p>
-  <div class="grid2">
-    <div class="panel"><h3>Register New Agent</h3>
-      <form id="agentForm"><div class="fields">
-        <div><label>Agent ID *</label><input name="id" required placeholder="AG-0001"></div>
-        <div><label>Full Name *</label><input name="name" required placeholder="Cikakken suna"></div>
-        <div><label>Phone Number *</label><input name="phone" required placeholder="080..."></div>
-        <div><label>Location / Branch</label><input name="location" placeholder="Jiha / reshe"></div>
-        <div class="full"><label>Status</label><select name="status"><option>Active</option><option>Suspended</option><option>Pending Verification</option></select></div>
-      </div><div class="actions"><button class="primary">Save Agent</button></div></form>
-    </div>
-    <div class="panel"><h3>Agent Controls</h3><p class="sub">Ka dakatar da agent idan akwai matsala. Wannan demo ne kawai.</p>
-      <div class="note">A tsarin production, agent verification (KYC), role permissions, maker-checker approval, audit logs da secure server-side validation wajibi ne.</div>
-    </div>
+
+  <h2>Agent Management</h2>
+  <p class="sub">Agent registration, identity verification and account administration.</p>
+
+  <div class="note">
+    Agent registration and verification records will be managed through the secure backend. Registration alone does not activate wallet access.
   </div>
-  <div class="panel" style="margin-top:18px"><h3>Registered Agents</h3><div id="agentsTable" class="empty">Ba a ƙara agent ba.</div></div>
-</section>
-<section id="transactions" class="page">
-  <h2>Transaction Entry</h2><p class="sub">Shigar da buƙatar transaction domin a duba kuma a amince da ita.</p>
-  <div class="warning">Kada ka saka PIN, password, OTP, bayanan katin banki ko cikakken bayanan sirrin abokin ciniki a wannan demo.</div>
-  <div class="grid2">
-    <div class="panel"><h3>New Transaction Request</h3>
-      <form id="txForm"><div class="fields">
-        <div><label>Transaction Reference *</label><input name="ref" required placeholder="TX-000001"></div>
-        <div><label>Agent *</label><select name="agent" id="agentSelect" required><option value="">Zaɓi agent</option></select></div>
-        <div><label>Transaction Type *</label><select name="type" required><option value="Deposit">Deposit (demo)</option><option value="Withdrawal">Withdrawal (demo)</option><option value="Transfer">Transfer (demo)</option><option value="Adjustment">Adjustment (demo)</option></select></div>
-        <div><label>Amount (₦) *</label><input name="amount" type="number" min="1" step="0.01" required placeholder="1000.00"></div>
-        <div class="full"><label>Reason / Description *</label><textarea name="reason" required placeholder="Dalilin transaction"></textarea></div>
-      </div><div class="actions"><button class="primary">Submit for Approval</button></div></form>
-    </div>
-    <div class="panel"><h3>Transaction Rules</h3>
-      <ul style="font-size:13px;line-height:1.8;padding-left:18px">
-        <li>Agent ba zai amince da transaction ɗinsa da kansa ba.</li>
-        <li>Buƙata tana fara da matsayin <b>Pending</b>.</li>
-        <li>Mai izini ne kaɗai zai iya Approve ko Reject.</li>
-        <li>A rubuta reference na musamman ga kowane transaction.</li>
-        <li>Production system ya kamata ya yi reconciliation da cikakken audit trail.</li>
-      </ul>
-    </div>
-  </div>
-  <div class="panel" style="margin-top:18px"><h3>All Transactions</h3><div id="transactionsTable" class="empty">Babu transaction tukuna.</div></div>
-</section>
-<section id="approvals" class="page">
-  <h2>Approval Centre</h2><p class="sub">Duba buƙatu kafin a yi alamar amincewa a cikin demo.</p>
-  <div class="note"><b>Maker-checker principle:</b> wanda ya ƙirƙiri buƙata kada ya zama wanda ya amince da ita. Wannan shafin demo bai da login ko tabbatar da matsayin mai amfani; kada a ɗauke shi a matsayin tsarin tsaro na gaske.</div>
-  <div class="panel"><h3>Pending Requests</h3><div id="approvalsTable" class="empty">Babu buƙata da ke jira.</div></div>
-</section>
-<section id="reports" class="page">
-  <h2>Reports & Audit</h2><p class="sub">Duba bayanan demo ko fitar da su zuwa CSV.</p>
+
   <div class="cards">
-    <div class="card"><div class="label">Total Requests</div><div class="num" id="reportTotal">0</div></div>
-    <div class="card"><div class="label">Approved / Completed</div><div class="num" id="reportApproved">0</div></div>
-    <div class="card"><div class="label">Rejected</div><div class="num" id="reportRejected">0</div></div>
-    <div class="card"><div class="label">Pending</div><div class="num" id="reportPending">0</div></div>
-  </div>
-  <div class="panel"><h3>Export Data</h3><p class="sub">Za a sauke bayanan da aka rubuta a wannan browser a matsayin CSV.</p><div class="actions"><button class="primary" id="exportAgents">Export Agents CSV</button><button class="primary" id="exportTx">Export Transactions CSV</button></div></div>
-</section>
-<section id="settings" class="page">
-  <h2>Settings & Controls</h2><p class="sub">Saitunan demo da shawarwarin tsarin production.</p>
-  <div class="grid2">
-    <div class="panel"><h3>Basic Configuration</h3>
-      <label>System / Business Name</label><input id="businessName" value="Digital Agent Wallet">
-      <label style="margin-top:12px">Currency</label><select id="currency"><option>NGN — Nigerian Naira</option></select>
-      <div class="actions"><button class="primary" id="saveSettings">Save Display Settings</button></div>
-      <p id="settingsMsg" class="sub"></p>
+
+    <div class="card">
+      <div class="label">Total Registered Agents</div>
+      <div class="num" id="agentTotal">—</div>
+      <small>All registered agents</small>
     </div>
-    <div class="panel"><h3>Production Checklist</h3>
-      <ul style="font-size:13px;line-height:1.9;padding-left:18px">
-        <li>Secure backend API and database</li><li>Individual login + MFA/2FA</li><li>Roles: Super Admin, Finance, Approver, Agent, Auditor</li><li>Server-side limits and dual approval thresholds</li><li>Immutable audit logs and daily reconciliation</li><li>Encrypted transport, backups and incident response</li><li>Legal/compliance review before handling real funds</li>
+
+    <div class="card">
+      <div class="label">Active Agents</div>
+      <div class="num" id="agentActive">—</div>
+      <small>Approved active accounts</small>
+    </div>
+
+    <div class="card">
+      <div class="label">Pending KYC</div>
+      <div class="num" id="agentPendingKyc">—</div>
+      <small>Awaiting identity verification</small>
+    </div>
+
+    <div class="card">
+      <div class="label">Suspended Agents</div>
+      <div class="num" id="agentSuspended">—</div>
+      <small>Restricted accounts</small>
+    </div>
+
+  </div>
+
+  <div class="panel">
+    <h3>Register New Agent</h3>
+
+    <form id="agentForm">
+
+      <div class="fields">
+
+        <div>
+          <label>Agent ID</label>
+          <input name="id" placeholder="Automatically assigned" readonly>
+        </div>
+
+        <div>
+          <label>Full Name *</label>
+          <input name="name" required placeholder="Enter full legal name">
+        </div>
+
+        <div>
+          <label>Phone Number *</label>
+          <input name="phone" type="tel" required placeholder="+234...">
+        </div>
+
+        <div>
+          <label>Email Address</label>
+          <input name="email" type="email" placeholder="agent@example.com">
+        </div>
+
+        <div>
+          <label>State *</label>
+          <input name="state" required placeholder="State">
+        </div>
+
+        <div>
+          <label>Local Government Area *</label>
+          <input name="lga" required placeholder="LGA">
+        </div>
+
+        <div>
+          <label>Branch / Office</label>
+          <input name="branch" placeholder="Branch or office location">
+        </div>
+
+        <div>
+          <label>Residential Address</label>
+          <input name="address" placeholder="Residential address">
+        </div>
+
+        <div>
+          <label>KYC Verification Status</label>
+          <select name="kycStatus">
+            <option value="Pending">Pending</option>
+            <option value="Under Review">Under Review</option>
+            <option value="Verified">Verified</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Account Status</label>
+          <select name="status">
+            <option value="Pending">Pending Activation</option>
+            <option value="Active">Active</option>
+            <option value="Suspended">Suspended</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="primary">Submit Agent Registration</button>
+        <button type="reset" class="secondary">Clear Form</button>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+
+    <h3>Registered Agents</h3>
+
+    <div class="fields">
+      <div>
+        <label>Search Agents</label>
+        <input id="agentSearch" placeholder="Search by name, ID, phone or email">
+      </div>
+
+      <div>
+        <label>Filter by Account Status</label>
+        <select id="agentStatusFilter">
+          <option value="">All Statuses</option>
+          <option value="Active">Active</option>
+          <option value="Pending">Pending</option>
+          <option value="Suspended">Suspended</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="agentsTable" class="empty">
+      Agent records will appear here after database integration.
+    </div>
+
+  </div>
+
+  <div class="warning">
+    <b>Security Notice:</b> KYC documents, identity numbers and sensitive personal information must be handled through secure, access-controlled backend services. Do not collect or store them in browser-only code.
+  </div>
+
+</section>
+
+
+<section id="transactions" class="page">
+
+    <div class="page-header">
+        <div>
+            <h2>Transactions Management</h2>
+            <p>Monitor, review and track all agent and beneficiary wallet transactions.</p>
+        </div>
+        <span class="status-badge">Backend Integration Pending</span>
+    </div>
+
+    <!-- TRANSACTION OVERVIEW -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-label">Total Transactions</div>
+            <div class="stat-value" id="transactionTotal">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Pending Transactions</div>
+            <div class="stat-value" id="transactionPending">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Posted Transactions</div>
+            <div class="stat-value" id="transactionPosted">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Rejected / Reversed</div>
+            <div class="stat-value" id="transactionExceptions">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+    </div>
+
+    <!-- TRANSACTION VALUE OVERVIEW -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-label">Total Credits</div>
+            <div class="stat-value" id="transactionCredits">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Total Debits</div>
+            <div class="stat-value" id="transactionDebits">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Agent Wallet Transactions</div>
+            <div class="stat-value" id="agentTransactionCount">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Beneficiary Wallet Transactions</div>
+            <div class="stat-value" id="beneficiaryTransactionCount">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+    </div>
+
+    <!-- TRANSACTION SEARCH AND FILTERS -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Transaction Records</h3>
+            <p>Search and filter transactions across both wallet categories.</p>
+        </div>
+
+        <div class="table-toolbar">
+            <input
+                type="search"
+                id="transactionSearch"
+                placeholder="Search reference, wallet ID or account holder..."
+            >
+
+            <select id="transactionWalletType">
+                <option value="">All Wallet Types</option>
+                <option value="agent">Agent Wallet</option>
+                <option value="beneficiary">Beneficiary Wallet</option>
+            </select>
+
+            <select id="transactionType">
+                <option value="">All Transaction Types</option>
+                <option value="credit">Credit</option>
+                <option value="debit">Debit</option>
+            </select>
+
+            <select id="transactionStatus">
+                <option value="">All Transaction Statuses</option>
+                <option value="pending">Pending</option>
+                <option value="posted">Posted</option>
+                <option value="rejected">Rejected</option>
+                <option value="reversed">Reversed</option>
+            </select>
+        </div>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Reference</th>
+                        <th>Wallet Type</th>
+                        <th>Account Holder</th>
+                        <th>Transaction Type</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Initiated By</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="transactionsTable">
+                    <tr>
+                        <td colspan="9" class="empty">
+                            Transaction records will appear here after backend integration.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p class="form-note">
+            Transaction amounts and records will be retrieved from the secure
+            backend. This page does not create, approve or post financial transactions.
+        </p>
+    </div>
+
+    <!-- TRANSACTION DETAILS -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Transaction Verification</h3>
+            <p>Review the details and audit information of a selected transaction.</p>
+        </div>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label for="verifyTransactionReference">Transaction Reference</label>
+                <input
+                    type="text"
+                    id="verifyTransactionReference"
+                    placeholder="Enter transaction reference"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="verifyTransactionWallet">Wallet ID</label>
+                <input
+                    type="text"
+                    id="verifyTransactionWallet"
+                    placeholder="Wallet ID"
+                    readonly
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="verifyTransactionAmount">Transaction Amount</label>
+                <input
+                    type="text"
+                    id="verifyTransactionAmount"
+                    placeholder="Amount"
+                    readonly
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="verifyTransactionStatus">Current Status</label>
+                <input
+                    type="text"
+                    id="verifyTransactionStatus"
+                    placeholder="Status"
+                    readonly
+                >
+            </div>
+
+            <div class="form-group full-width">
+                <label for="verifyTransactionAudit">Audit Information</label>
+                <textarea
+                    id="verifyTransactionAudit"
+                    rows="4"
+                    placeholder="Transaction audit information will appear here after backend integration."
+                    readonly
+                ></textarea>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- TRANSACTION CONTROL NOTICE -->
+    <div class="panel">
+        <h3>Financial Transaction Controls</h3>
+        <p>
+            All financial transactions must be authenticated, authorized and
+            recorded on the server. Posted transactions must not be edited or
+            deleted directly. Corrections must use a properly authorized reversal
+            transaction with a complete audit trail. Transaction references must
+            be unique, and duplicate payment requests must be prevented.
+        </p>
+    </div>
+
+</section>
+
+
+<section id="approvals" class="page">
+
+    <div class="page-header">
+        <div>
+            <h2>Approvals Management</h2>
+            <p>Review, authorize and monitor financial operations requiring approval.</p>
+        </div>
+        <span class="status-badge">Backend Integration Pending</span>
+    </div>
+
+    <!-- APPROVAL OVERVIEW -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-label">Total Approval Requests</div>
+            <div class="stat-value" id="approvalTotal">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Pending Approvals</div>
+            <div class="stat-value" id="approvalPending">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Approved Requests</div>
+            <div class="stat-value" id="approvalApproved">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Rejected Requests</div>
+            <div class="stat-value" id="approvalRejected">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+    </div>
+
+    <!-- APPROVAL QUEUE -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Approval Queue</h3>
+            <p>Requests awaiting review and authorization.</p>
+        </div>
+
+        <div class="table-toolbar">
+            <input
+                type="search"
+                id="approvalSearch"
+                placeholder="Search request reference, wallet or requester..."
+            >
+
+            <select id="approvalTypeFilter">
+                <option value="">All Request Types</option>
+                <option value="agent_funding">Agent Wallet Funding</option>
+                <option value="beneficiary_disbursement">Beneficiary Disbursement</option>
+                <option value="transaction_reversal">Transaction Reversal</option>
+                <option value="wallet_adjustment">Wallet Adjustment</option>
+                <option value="other">Other Request</option>
+            </select>
+
+            <select id="approvalStatusFilter">
+                <option value="">All Approval Statuses</option>
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+            </select>
+        </div>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Request Date</th>
+                        <th>Request Reference</th>
+                        <th>Request Type</th>
+                        <th>Wallet / Beneficiary</th>
+                        <th>Amount</th>
+                        <th>Requested By</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="approvalQueueTable">
+                    <tr>
+                        <td colspan="8" class="empty">
+                            Approval requests will appear here after backend integration.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- APPROVAL REVIEW -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Review Approval Request</h3>
+            <p>Review a request before making an authorization decision.</p>
+        </div>
+
+        <form id="approvalReviewForm">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="approvalReference">Request Reference</label>
+                    <input
+                        type="text"
+                        id="approvalReference"
+                        name="request_reference"
+                        placeholder="Select or enter request reference"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="approvalRequestType">Request Type</label>
+                    <input
+                        type="text"
+                        id="approvalRequestType"
+                        name="request_type"
+                        placeholder="Request type"
+                        readonly
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="approvalRequestedAmount">Requested Amount</label>
+                    <input
+                        type="text"
+                        id="approvalRequestedAmount"
+                        name="amount"
+                        placeholder="Amount"
+                        readonly
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="approvalRequester">Requested By</label>
+                    <input
+                        type="text"
+                        id="approvalRequester"
+                        name="requested_by"
+                        placeholder="Requester"
+                        readonly
+                    >
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="approvalRequestReason">Request Details</label>
+                    <textarea
+                        id="approvalRequestReason"
+                        name="request_reason"
+                        rows="3"
+                        placeholder="Request details will appear here after backend integration."
+                        readonly
+                    ></textarea>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="approvalDecisionNotes">Review Notes</label>
+                    <textarea
+                        id="approvalDecisionNotes"
+                        name="decision_notes"
+                        rows="4"
+                        placeholder="Enter your review comments or reasons for rejection."
+                    ></textarea>
+                </div>
+
+            </div>
+
+            <p class="form-note">
+                This is a review interface only. Approval decisions will be
+                authenticated and processed by the backend after integration.
+            </p>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-primary" disabled>
+                    Approve Request
+                </button>
+
+                <button type="button" class="btn btn-secondary" disabled>
+                    Reject Request
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- APPROVAL HISTORY -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Approval History</h3>
+            <p>Historical record of completed approval decisions.</p>
+        </div>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Decision Date</th>
+                        <th>Request Reference</th>
+                        <th>Request Type</th>
+                        <th>Decision</th>
+                        <th>Reviewed By</th>
+                        <th>Review Notes</th>
+                    </tr>
+                </thead>
+
+                <tbody id="approvalHistoryTable">
+                    <tr>
+                        <td colspan="6" class="empty">
+                            Approval history will appear here after backend integration.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- SEPARATION OF DUTIES -->
+    <div class="panel">
+        <h3>Approval Security and Separation of Duties</h3>
+        <p>
+            A user who initiates a financial request must not approve that same
+            request. Approval authority must depend on assigned roles and
+            authorization limits. High-value transactions may require additional
+            approval levels. Every decision must record the reviewer, timestamp,
+            decision and reason in an immutable audit trail.
+        </p>
+    </div>
+
+</section>
+
+
+<section id="reports" class="page">
+
+    <div class="page-header">
+        <div>
+            <h2>Reports & Analytics</h2>
+            <p>Financial reporting, wallet performance and operational analysis.</p>
+        </div>
+        <span class="status-badge">Backend Integration Pending</span>
+    </div>
+
+    <!-- REPORT OVERVIEW -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-label">Total Wallets</div>
+            <div class="stat-value" id="reportTotalWallets">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Total Credits</div>
+            <div class="stat-value" id="reportTotalCredits">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Total Debits</div>
+            <div class="stat-value" id="reportTotalDebits">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Total Disbursements</div>
+            <div class="stat-value" id="reportTotalDisbursements">—</div>
+            <small>Awaiting backend integration</small>
+        </div>
+    </div>
+
+    <!-- REPORT FILTERS -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Generate Report</h3>
+            <p>Select a report category and reporting period.</p>
+        </div>
+
+        <form id="reportFilterForm">
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="reportCategory">Report Category</label>
+                    <select id="reportCategory" name="category" required>
+                        <option value="">Select report category</option>
+                        <option value="financial_summary">Financial Summary</option>
+                        <option value="agent_wallets">Agent Wallet Report</option>
+                        <option value="beneficiary_wallets">Beneficiary Wallet Report</option>
+                        <option value="transactions">Transaction Report</option>
+                        <option value="credits_debits">Credits & Debits Report</option>
+                        <option value="disbursements">Disbursement Report</option>
+                        <option value="approvals">Approval Report</option>
+                        <option value="agents">Agent Activity Report</option>
+                        <option value="beneficiaries">Beneficiary Report</option>
+                        <option value="audit">Audit Trail Report</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="reportStartDate">Start Date</label>
+                    <input type="date" id="reportStartDate" name="start_date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="reportEndDate">End Date</label>
+                    <input type="date" id="reportEndDate" name="end_date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="reportWalletType">Wallet Category</label>
+                    <select id="reportWalletType" name="wallet_type">
+                        <option value="">All Wallet Categories</option>
+                        <option value="agent">Agent Wallet</option>
+                        <option value="beneficiary">Beneficiary Wallet</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="reportTransactionStatus">Transaction Status</label>
+                    <select id="reportTransactionStatus" name="transaction_status">
+                        <option value="">All Statuses</option>
+                        <option value="pending">Pending</option>
+                        <option value="posted">Posted</option>
+                        <option value="rejected">Rejected</option>
+                        <option value="reversed">Reversed</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="reportFormat">Export Format</label>
+                    <select id="reportFormat" name="format" required>
+                        <option value="pdf">PDF Document</option>
+                        <option value="csv">CSV Spreadsheet</option>
+                        <option value="xlsx">Excel Workbook</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                    Generate Report
+                </button>
+
+                <button type="reset" class="btn btn-secondary">
+                    Clear Filters
+                </button>
+            </div>
+
+            <p class="form-note">
+                Report generation and file exports will be enabled after secure
+                backend integration. No sample or fabricated financial figures
+                are displayed.
+            </p>
+        </form>
+    </div>
+
+    <!-- FINANCIAL SUMMARY -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Financial Summary</h3>
+            <p>Consolidated financial position across both wallet categories.</p>
+        </div>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Financial Indicator</th>
+                        <th>Agent Wallets</th>
+                        <th>Beneficiary Wallets</th>
+                        <th>Overall Total</th>
+                    </tr>
+                </thead>
+
+                <tbody id="financialSummaryTable">
+                    <tr>
+                        <td>Total Wallet Accounts</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Total Credits</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Total Debits</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Available Wallet Balances</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Pending Transactions</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- REPORT RESULTS -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Generated Report Results</h3>
+            <p>Reports generated from verified system records.</p>
+        </div>
+
+        <div id="reportResults" class="empty">
+            No report has been generated yet. Connect the backend to retrieve
+            verified records and display report results here.
+        </div>
+    </div>
+
+    <!-- REPORT HISTORY -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Report Generation History</h3>
+            <p>Track previously generated reports and the users who generated them.</p>
+        </div>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Report Reference</th>
+                        <th>Report Category</th>
+                        <th>Reporting Period</th>
+                        <th>Generated By</th>
+                        <th>Format</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="reportHistoryTable">
+                    <tr>
+                        <td colspan="7" class="empty">
+                            Report history will appear here after backend integration.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- REPORT ACCESS CONTROL -->
+    <div class="panel">
+        <h3>Reporting Security and Data Protection</h3>
+        <p>
+            Reports must be generated from authorized database records.
+            Access to financial summaries, beneficiary information and audit
+            records must follow assigned user permissions. Sensitive personal
+            information should be excluded from general reports unless access
+            is specifically authorized.
+        </p>
+    </div>
+
+</section>
+
+
+
+<!-- USER MANAGEMENT -->
+<section id="users" class="page">
+
+  <div class="section-header">
+    <div>
+      <h2>User Management</h2>
+      <p>Manage system users, roles and account access.</p>
+    </div>
+    <span class="status-badge">User API Connected</span>
+  </div>
+
+  <!-- USER STATISTICS -->
+  <div class="grid">
+
+    <div class="card">
+      <h3>Total Users</h3>
+      <div class="metric">—</div>
+    </div>
+
+    <div class="card">
+      <h3>Active Users</h3>
+      <div class="metric">—</div>
+    </div>
+
+    <div class="card">
+      <h3>Pending Invitations</h3>
+      <div class="metric">—</div>
+    </div>
+
+    <div class="card">
+      <h3>Suspended Users</h3>
+      <div class="metric">—</div>
+    </div>
+
+  </div>
+
+  <!-- CREATE USER -->
+  <div class="panel">
+
+    <h3>Register / Invite New User</h3>
+
+    <form id="systemUserForm">
+
+      <div class="form-grid">
+
+        <div>
+          <label>Email Address</label>
+          <input
+            type="email"
+            id="systemUserEmail"
+            placeholder="Enter email address"
+            required
+          >
+        </div>
+
+        <div>
+          <label>Password</label>
+          <input
+            type="password"
+            id="systemUserPassword"
+            placeholder="Create a strong password"
+            minlength="8"
+            required
+          >
+        </div>
+
+        <div>
+          <label>System Role</label>
+          <select id="systemUserRole" required>
+            <option value="">Select Role</option>
+            <option value="super_admin">Super Admin</option>
+            <option value="finance_officer">Finance Officer</option>
+            <option value="approver">Approver</option>
+            <option value="agent">Agent</option>
+            <option value="viewer">Viewer</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+
+        <button type="submit">
+          Create User
+        </button>
+
+        <button type="reset" class="secondary">
+          Clear Form
+        </button>
+
+      </div>
+
+      <p class="notice">
+        New users will be created through the secure backend.
+        Only Super Admin can create system users.
+      </p>
+
+    </form>
+
+  </div>
+
+  <!-- USER DIRECTORY -->
+  <div class="panel">
+
+    <h3>System Users Directory</h3>
+
+    <div class="toolbar">
+
+      <input
+        type="search"
+        id="systemUserSearch"
+        placeholder="Search by name, email or phone"
+      >
+
+      <select id="systemUserRoleFilter">
+        <option value="">All Roles</option>
+        <option value="super_admin">Super Admin</option>
+        <option value="finance_officer">Finance Officer</option>
+        <option value="approver">Approver</option>
+        <option value="agent">Agent</option>
+        <option value="viewer">Viewer</option>
+      </select>
+
+      <select id="systemUserStatusFilter">
+        <option value="">All Statuses</option>
+        <option value="active">Active</option>
+        <option value="pending">Pending</option>
+        <option value="suspended">Suspended</option>
+      </select>
+
+    </div>
+
+    <div class="table-responsive">
+
+      <table>
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Department</th>
+            <th>Status</th>
+            <th>Date Created</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody id="systemUsersTable">
+          <tr>
+            <td colspan="8" class="empty">
+              Loading user records...
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+  <!-- ROLE SECURITY -->
+  <div class="panel">
+
+    <h3>User Access & Security</h3>
+
+    <div class="notice">
+      <strong>Security Rules</strong>
+
+      <ul>
+        <li>Only authorised administrators can manage system users.</li>
+        <li>Users must receive permissions according to their assigned roles.</li>
+        <li>A user must not approve their own financial transaction.</li>
+        <li>Super Admin access must be protected with strong authentication.</li>
+        <li>Suspended users must not access protected system functions.</li>
+        <li>All user creation, role changes and account status changes must be recorded in the audit log.</li>
       </ul>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<section id="settings" class="page">
+
+    <div class="page-header">
+        <div>
+            <h2>System Settings</h2>
+            <p>Configure organization details, wallet controls, security and system preferences.</p>
+        </div>
+        <span class="status-badge">User API Connected</span>
+    </div>
+
+    <!-- ORGANIZATION PROFILE -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Organization Profile</h3>
+            <p>Manage the organization identity displayed across the wallet system.</p>
+        </div>
+
+        <form id="organizationSettingsForm">
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="organizationName">Organization Name</label>
+                    <input type="text" id="organizationName"
+                        name="organization_name"
+                        placeholder="Enter organization name">
+                </div>
+
+                <div class="form-group">
+                    <label for="organizationEmail">Official Email</label>
+                    <input type="email" id="organizationEmail"
+                        name="organization_email"
+                        placeholder="Enter official email">
+                </div>
+
+                <div class="form-group">
+                    <label for="organizationPhone">Official Phone</label>
+                    <input type="tel" id="organizationPhone"
+                        name="organization_phone"
+                        placeholder="Enter official phone number">
+                </div>
+
+                <div class="form-group">
+                    <label for="organizationWebsite">Website</label>
+                    <input type="url" id="organizationWebsite"
+                        name="website"
+                        placeholder="https://example.com">
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="organizationAddress">Office Address</label>
+                    <textarea id="organizationAddress"
+                        name="address" rows="3"
+                        placeholder="Enter official office address"></textarea>
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" disabled>
+                    Save Organization Profile
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- WALLET CONFIGURATION -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Wallet Configuration</h3>
+            <p>Configure the basic operating rules for wallet accounts.</p>
+        </div>
+
+        <form id="walletSettingsForm">
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="defaultCurrency">Default Currency</label>
+                    <select id="defaultCurrency" name="currency">
+                        <option value="NGN">Nigerian Naira (NGN)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="walletReferencePrefix">Wallet Reference Prefix</label>
+                    <input type="text" id="walletReferencePrefix"
+                        name="wallet_prefix"
+                        placeholder="e.g. DAW">
+                </div>
+
+                <div class="form-group">
+                    <label for="walletMinimumBalance">Minimum Balance (₦)</label>
+                    <input type="number" id="walletMinimumBalance"
+                        name="minimum_balance" min="0"
+                        placeholder="Set minimum balance">
+                </div>
+
+                <div class="form-group">
+                    <label for="walletMaximumBalance">Maximum Balance (₦)</label>
+                    <input type="number" id="walletMaximumBalance"
+                        name="maximum_balance" min="0"
+                        placeholder="Set maximum balance">
+                </div>
+
+            </div>
+
+            <p class="form-note">
+                Wallet limits must be enforced by the backend, not merely by
+                frontend settings.
+            </p>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" disabled>
+                    Save Wallet Configuration
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- TRANSACTION LIMITS -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Transaction Limits</h3>
+            <p>Define transaction limits and financial control thresholds.</p>
+        </div>
+
+        <form id="transactionLimitsForm">
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="minimumTransaction">Minimum Transaction (₦)</label>
+                    <input type="number" id="minimumTransaction"
+                        name="minimum_transaction" min="0"
+                        placeholder="Minimum amount">
+                </div>
+
+                <div class="form-group">
+                    <label for="maximumTransaction">Maximum Transaction (₦)</label>
+                    <input type="number" id="maximumTransaction"
+                        name="maximum_transaction" min="0"
+                        placeholder="Maximum amount">
+                </div>
+
+                <div class="form-group">
+                    <label for="dailyTransactionLimit">Daily Transaction Limit (₦)</label>
+                    <input type="number" id="dailyTransactionLimit"
+                        name="daily_limit" min="0"
+                        placeholder="Daily limit">
+                </div>
+
+                <div class="form-group">
+                    <label for="approvalThreshold">Additional Approval Threshold (₦)</label>
+                    <input type="number" id="approvalThreshold"
+                        name="approval_threshold" min="0"
+                        placeholder="Amount requiring extra approval">
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" disabled>
+                    Save Transaction Limits
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- APPROVAL CONFIGURATION -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Approval Configuration</h3>
+            <p>Define approval requirements for financial operations.</p>
+        </div>
+
+        <form id="approvalSettingsForm">
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="approvalLevels">Required Approval Levels</label>
+                    <select id="approvalLevels" name="approval_levels">
+                        <option value="1">One Approval Level</option>
+                        <option value="2">Two Approval Levels</option>
+                        <option value="3">Three Approval Levels</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="highValueApproval">High-Value Transaction Approval</label>
+                    <select id="highValueApproval" name="high_value_approval">
+                        <option value="enabled">Enabled</option>
+                        <option value="disabled">Disabled</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="approvalPolicyNotes">Approval Policy Notes</label>
+                    <textarea id="approvalPolicyNotes"
+                        name="approval_policy" rows="3"
+                        placeholder="Describe approval policy requirements"></textarea>
+                </div>
+
+            </div>
+
+            <p class="form-note">
+                Initiators must not approve their own financial requests.
+                Mandatory separation-of-duties rules cannot be disabled here.
+            </p>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" disabled>
+                    Save Approval Settings
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- USER ROLES AND PERMISSIONS -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>User Roles & Permissions</h3>
+            <p>Manage access according to assigned administrative responsibilities.</p>
+        </div>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Role</th>
+                        <th>Dashboard</th>
+                        <th>Wallet Management</th>
+                        <th>Transactions</th>
+                        <th>Approvals</th>
+                        <th>Reports</th>
+                        <th>System Settings</th>
+                    </tr>
+                </thead>
+
+                <tbody id="rolePermissionsTable">
+                    <tr>
+                        <td>Super Admin</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Finance Officer</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Approver</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Agent</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Viewer</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p class="form-note">
+            Actual role permissions will be retrieved and enforced by the secure backend.
+        </p>
+    </div>
+
+    <!-- SECURITY SETTINGS -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Security Settings</h3>
+            <p>Configure account protection and administrative security policies.</p>
+        </div>
+
+        <form id="securitySettingsForm">
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="sessionTimeout">Session Timeout</label>
+                    <select id="sessionTimeout" name="session_timeout">
+                        <option value="15">15 Minutes</option>
+                        <option value="30">30 Minutes</option>
+                        <option value="60">60 Minutes</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="loginProtection">Login Protection</label>
+                    <select id="loginProtection" name="login_protection">
+                        <option value="enabled">Enabled</option>
+                        <option value="disabled">Disabled</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="mfaRequirement">Multi-Factor Authentication</label>
+                    <select id="mfaRequirement" name="mfa">
+                        <option value="required">Required</option>
+                        <option value="optional">Optional</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="auditLogging">Audit Logging</label>
+                    <select id="auditLogging" name="audit_logging">
+                        <option value="enabled">Enabled</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <p class="form-note">
+                Critical security controls and authentication policies must be
+                enforced server-side. Audit logging must remain enabled.
+            </p>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" disabled>
+                    Save Security Settings
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- NOTIFICATION SETTINGS -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Notification Preferences</h3>
+            <p>Configure system notification preferences.</p>
+        </div>
+
+        <form id="notificationSettingsForm">
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="emailNotifications">Email Notifications</label>
+                    <select id="emailNotifications" name="email_notifications">
+                        <option value="enabled">Enabled</option>
+                        <option value="disabled">Disabled</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="smsNotifications">SMS Notifications</label>
+                    <select id="smsNotifications" name="sms_notifications">
+                        <option value="enabled">Enabled</option>
+                        <option value="disabled">Disabled</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="securityAlerts">Security Alerts</label>
+                    <select id="securityAlerts" name="security_alerts">
+                        <option value="enabled">Enabled</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" disabled>
+                    Save Notification Settings
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- SYSTEM STATUS -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>System Status & Maintenance</h3>
+            <p>Monitor system service integration and maintenance readiness.</p>
+        </div>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>System Component</th>
+                        <th>Status</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Frontend Interface</td>
+                        <td>Available</td>
+                        <td>User interface loaded</td>
+                    </tr>
+                    <tr>
+                        <td>Database Connection</td>
+                        <td>Pending</td>
+                        <td>Backend integration required</td>
+                    </tr>
+                    <tr>
+                        <td>Payment Provider</td>
+                        <td>Not Integrated</td>
+                        <td>Licensed payment provider required</td>
+                    </tr>
+                    <tr>
+                        <td>Authentication & Authorization</td>
+                        <td>Pending Verification</td>
+                        <td>Production security testing required</td>
+                    </tr>
+                    <tr>
+                        <td>Audit Logging</td>
+                        <td>Pending</td>
+                        <td>Server-side verification required</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- SYSTEM AUDIT -->
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Recent Administrative Activities</h3>
+            <p>Track changes made to system configuration and access controls.</p>
+        </div>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Administrator</th>
+                        <th>Activity</th>
+                        <th>Module</th>
+                        <th>IP Address</th>
+                    </tr>
+                </thead>
+
+                <tbody id="settingsAuditTable">
+                    <tr>
+                        <td colspan="5" class="empty">
+                            Administrative audit records will appear here after backend integration.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>System Configuration Protection</h3>
+        <p>
+            Only authorized administrators may change system configuration.
+            Every configuration change must be validated, logged and auditable.
+            Secret keys, passwords and payment credentials must never be stored
+            in frontend code or exposed to browser users.
+        </p>
+    </div>
+
+</section>
+
+<!-- SUPPORT PROGRAMMES MANAGEMENT -->
+<section id="programmes" class="page">
+
+  <div class="section-header">
+    <div>
+      <h2>Support Programmes Management</h2>
+      <p>Create, manage and monitor approved support programmes.</p>
+    </div>
+    <span class="status-badge">Backend Integration Pending</span>
+  </div>
+
+  <!-- PROGRAMME OVERVIEW -->
+  <div class="grid">
+    <div class="card">
+      <h3>Total Programmes</h3>
+      <div class="metric">—</div>
+    </div>
+    <div class="card">
+      <h3>Active Programmes</h3>
+      <div class="metric">—</div>
+    </div>
+    <div class="card">
+      <h3>Pending Programmes</h3>
+      <div class="metric">—</div>
+    </div>
+    <div class="card">
+      <h3>Closed Programmes</h3>
+      <div class="metric">—</div>
     </div>
   </div>
-  <div class="warning"><b>Important:</b> Kada a yi amfani da wannan HTML wajen riƙe kuɗin jama'a ko gudanar da transfer na gaske. Ana buƙatar backend mai tsaro, gwajin tsaro, da tantance ƙa'idojin CBN/Nigeria da suka shafi irin kasuwancin kafin ƙaddamarwa.</div>
-  <div class="panel"><h3>Reset Demo Data</h3><p class="sub">Wannan zai goge agents da transactions da aka adana a browser ɗin nan.</p><button class="danger" id="resetData">Reset All Demo Data</button></div>
+
+  <!-- CREATE PROGRAMME -->
+  <div class="panel">
+    <h3>Create New Support Programme</h3>
+
+    <form id="supportProgrammeForm">
+      <div class="form-grid">
+
+        <div>
+          <label>Programme Name</label>
+          <input type="text" id="programmeName"
+                 placeholder="Enter programme name" required>
+        </div>
+
+        <div>
+          <label>Programme Reference</label>
+          <input type="text" id="programmeReference"
+                 placeholder="Assigned by system after integration" disabled>
+        </div>
+
+        <div>
+          <label>Programme Category</label>
+          <select id="programmeCategory" required>
+            <option value="">Select category</option>
+            <option value="humanitarian">Humanitarian Support</option>
+            <option value="education">Education</option>
+            <option value="health">Healthcare</option>
+            <option value="economic">Economic Empowerment</option>
+            <option value="food">Food Assistance</option>
+            <option value="emergency">Emergency Relief</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Programme Manager</label>
+          <input type="text" id="programmeManager"
+                 placeholder="Enter responsible officer">
+        </div>
+
+        <div>
+          <label>Total Budget (NGN)</label>
+          <input type="number" id="programmeBudget"
+                 min="0" step="0.01" placeholder="Enter approved budget" required>
+        </div>
+
+        <div>
+          <label>Maximum Support per Beneficiary (NGN)</label>
+          <input type="number" id="programmeBeneficiaryLimit"
+                 min="0" step="0.01" placeholder="Enter support limit">
+        </div>
+
+        <div>
+          <label>Start Date</label>
+          <input type="date" id="programmeStartDate" required>
+        </div>
+
+        <div>
+          <label>End Date</label>
+          <input type="date" id="programmeEndDate" required>
+        </div>
+
+        <div>
+          <label>Programme Status</label>
+          <select id="programmeStatus" required>
+            <option value="draft">Draft</option>
+            <option value="pending">Pending Approval</option>
+            <option value="active">Active</option>
+            <option value="suspended">Suspended</option>
+            <option value="closed">Closed</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Target Beneficiaries</label>
+          <input type="number" id="programmeTarget"
+                 min="0" placeholder="Estimated number">
+        </div>
+
+        <div>
+          <label>Coverage State</label>
+          <input type="text" id="programmeState"
+                 value="Bauchi State">
+        </div>
+
+        <div>
+          <label>Coverage Area / LGAs</label>
+          <input type="text" id="programmeCoverage"
+                 placeholder="Enter LGAs or coverage area">
+        </div>
+
+      </div>
+
+      <div style="margin-top:16px;">
+        <label>Programme Description</label>
+        <textarea id="programmeDescription" rows="3"
+                  placeholder="Describe the programme objectives and activities"></textarea>
+      </div>
+
+      <div style="margin-top:16px;">
+        <label>Eligibility Criteria</label>
+        <textarea id="programmeEligibility" rows="3"
+                  placeholder="State transparent, nonpartisan eligibility requirements"></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit">Create User</button>
+        <button type="reset" class="secondary">Clear Form</button>
+      </div>
+
+      <p class="notice">
+        Programme creation, budget approval and activation will be enabled
+        after secure backend integration and authorised approval.
+      </p>
+    </form>
+  </div>
+
+  <!-- PROGRAMME DIRECTORY -->
+  <div class="panel">
+    <h3>Support Programmes Directory</h3>
+
+    <div class="toolbar">
+      <input type="search" id="programmeSearch"
+             placeholder="Search programmes">
+
+      <select id="programmeCategoryFilter">
+        <option value="">All Categories</option>
+        <option value="humanitarian">Humanitarian Support</option>
+        <option value="education">Education</option>
+        <option value="health">Healthcare</option>
+        <option value="economic">Economic Empowerment</option>
+        <option value="food">Food Assistance</option>
+        <option value="emergency">Emergency Relief</option>
+        <option value="other">Other</option>
+      </select>
+
+      <select id="programmeStatusFilter">
+        <option value="">All Statuses</option>
+        <option value="draft">Draft</option>
+        <option value="pending">Pending Approval</option>
+        <option value="active">Active</option>
+        <option value="suspended">Suspended</option>
+        <option value="closed">Closed</option>
+      </select>
+    </div>
+
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Reference</th>
+            <th>Programme Name</th>
+            <th>Category</th>
+            <th>Budget (NGN)</th>
+            <th>Beneficiaries</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="programmesTable">
+          <tr>
+            <td colspan="9" class="empty">
+              Programme records will appear here after backend integration.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- PROGRAMME FINANCIAL MONITORING -->
+  <div class="panel">
+    <h3>Programme Budget Monitoring</h3>
+
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Programme</th>
+            <th>Approved Budget</th>
+            <th>Total Disbursed</th>
+            <th>Remaining Budget</th>
+            <th>Utilisation</th>
+          </tr>
+        </thead>
+        <tbody id="programmeBudgetTable">
+          <tr>
+            <td colspan="5" class="empty">
+              Financial monitoring will be available after backend integration.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="notice">
+    <strong>Programme Governance & Protection</strong>
+    <ul>
+      <li>Every programme must have an approved budget and documented objectives.</li>
+      <li>Eligibility criteria must be transparent and nonpartisan.</li>
+      <li>Political affiliation, campaign participation and voting preference must never determine access to humanitarian support.</li>
+      <li>Programme budget changes and disbursements must be authorised and audited.</li>
+      <li>Closed or suspended programmes must not accept new disbursement requests.</li>
+    </ul>
+  </div>
+
 </section>
+
+<!-- DISBURSEMENT MANAGEMENT -->
+<section id="disbursements" class="page">
+
+  <div class="section-header">
+    <div>
+      <h2>Disbursement Management</h2>
+      <p>Manage, review and monitor authorised beneficiary payments.</p>
+    </div>
+    <span class="status-badge">Backend Integration Pending</span>
+  </div>
+
+  <!-- DISBURSEMENT OVERVIEW -->
+  <div class="grid">
+    <div class="card">
+      <h3>Total Disbursements</h3>
+      <div class="metric">—</div>
+    </div>
+    <div class="card">
+      <h3>Pending Requests</h3>
+      <div class="metric">—</div>
+    </div>
+    <div class="card">
+      <h3>Approved Payments</h3>
+      <div class="metric">—</div>
+    </div>
+    <div class="card">
+      <h3>Failed / Rejected</h3>
+      <div class="metric">—</div>
+    </div>
+  </div>
+
+  <!-- FINANCIAL SUMMARY -->
+  <div class="panel">
+    <h3>Disbursement Financial Summary</h3>
+    <div class="grid">
+      <div class="card">
+        <h3>Total Requested</h3>
+        <div class="metric">—</div>
+      </div>
+      <div class="card">
+        <h3>Total Approved</h3>
+        <div class="metric">—</div>
+      </div>
+      <div class="card">
+        <h3>Total Paid</h3>
+        <div class="metric">—</div>
+      </div>
+      <div class="card">
+        <h3>Outstanding</h3>
+        <div class="metric">—</div>
+      </div>
+    </div>
+    <p class="notice">
+      Financial figures will be calculated from verified backend records.
+      No estimated or sample balances are displayed.
+    </p>
+  </div>
+
+  <!-- CREATE DISBURSEMENT REQUEST -->
+  <div class="panel">
+    <h3>Create Disbursement Request</h3>
+
+    <form id="disbursementForm">
+      <div class="form-grid">
+
+        <div>
+          <label>Support Programme</label>
+          <select id="disbursementProgramme" required>
+            <option value="">Select Support Programme</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Beneficiary ID</label>
+          <input type="text" id="disbursementBeneficiaryId"
+                 placeholder="Enter or select beneficiary ID" required>
+        </div>
+
+        <div>
+          <label>Beneficiary Full Name</label>
+          <input type="text" id="disbursementBeneficiaryName"
+                 placeholder="Verified beneficiary name" required>
+        </div>
+
+        <div>
+          <label>Beneficiary Wallet ID</label>
+          <input type="text" id="disbursementWalletId"
+                 placeholder="Verified beneficiary wallet ID" required>
+        </div>
+
+        <div>
+          <label>Amount (NGN)</label>
+          <input type="number" id="disbursementAmount"
+                 min="0.01" step="0.01"
+                 placeholder="Enter amount" required>
+        </div>
+
+        <div>
+          <label>Payment Method</label>
+          <select id="disbursementMethod" required>
+            <option value="">Select payment method</option>
+            <option value="beneficiary_wallet">Beneficiary Wallet</option>
+            <option value="bank_transfer">Bank Transfer</option>
+            <option value="other">Other Approved Method</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Request Priority</label>
+          <select id="disbursementPriority" required>
+            <option value="normal">Normal</option>
+            <option value="high">High</option>
+            <option value="urgent">Urgent</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Requested Payment Date</label>
+          <input type="date" id="disbursementDate" required>
+        </div>
+
+        <div>
+          <label>Requesting Officer</label>
+          <input type="text" id="disbursementOfficer"
+                 placeholder="Authenticated user will be identified by backend"
+                 disabled>
+        </div>
+
+        <div>
+          <label>Request Reference</label>
+          <input type="text" id="disbursementReference"
+                 placeholder="Generated securely by backend" disabled>
+        </div>
+
+      </div>
+
+      <div style="margin-top:16px;">
+        <label>Payment Purpose / Justification</label>
+        <textarea id="disbursementPurpose" rows="3"
+                  placeholder="Explain the purpose of this disbursement"
+                  required></textarea>
+      </div>
+
+      <div style="margin-top:16px;">
+        <label>Additional Notes</label>
+        <textarea id="disbursementNotes" rows="2"
+                  placeholder="Optional notes"></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" disabled>
+          Submit Disbursement Request
+        </button>
+        <button type="reset" class="secondary">
+          Clear Form
+        </button>
+      </div>
+
+      <p class="notice">
+        Submitting a request will not transfer money. Every request must pass
+        eligibility, budget, wallet and approval checks before payment execution.
+      </p>
+    </form>
+  </div>
+
+  <!-- DISBURSEMENT QUEUE -->
+  <div class="panel">
+    <h3>Disbursement Requests & Payment Queue</h3>
+
+    <div class="toolbar">
+      <input type="search" id="disbursementSearch"
+             placeholder="Search reference, beneficiary or programme">
+
+      <select id="disbursementStatusFilter">
+        <option value="">All Statuses</option>
+        <option value="pending">Pending</option>
+        <option value="under_review">Under Review</option>
+        <option value="approved">Approved</option>
+        <option value="processing">Processing</option>
+        <option value="paid">Paid</option>
+        <option value="failed">Failed</option>
+        <option value="rejected">Rejected</option>
+        <option value="reversed">Reversed</option>
+      </select>
+
+      <select id="disbursementMethodFilter">
+        <option value="">All Payment Methods</option>
+        <option value="beneficiary_wallet">Beneficiary Wallet</option>
+        <option value="bank_transfer">Bank Transfer</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Reference</th>
+            <th>Beneficiary</th>
+            <th>Programme</th>
+            <th>Amount (NGN)</th>
+            <th>Payment Method</th>
+            <th>Requested By</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="disbursementTable">
+          <tr>
+            <td colspan="9" class="empty">
+              Disbursement records will appear here after backend integration.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- PAYMENT VERIFICATION -->
+  <div class="panel">
+    <h3>Payment Verification & Reconciliation</h3>
+
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Payment Reference</th>
+            <th>Disbursement Reference</th>
+            <th>Amount</th>
+            <th>Provider Reference</th>
+            <th>Payment Date</th>
+            <th>Verification Status</th>
+          </tr>
+        </thead>
+        <tbody id="disbursementVerificationTable">
+          <tr>
+            <td colspan="6" class="empty">
+              Payment verification records will appear after payment-provider integration.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- DISBURSEMENT HISTORY -->
+  <div class="panel">
+    <h3>Disbursement Audit History</h3>
+
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Date & Time</th>
+            <th>Reference</th>
+            <th>Action</th>
+            <th>Performed By</th>
+            <th>Previous Status</th>
+            <th>New Status</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody id="disbursementAuditTable">
+          <tr>
+            <td colspan="7" class="empty">
+              Audit records will appear after secure backend integration.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="notice">
+    <strong>Disbursement Security & Financial Controls</strong>
+    <ul>
+      <li>Only approved and eligible beneficiaries may receive programme support.</li>
+      <li>Every payment must be within the approved programme budget and beneficiary limit.</li>
+      <li>The person requesting a payment must not approve their own request.</li>
+      <li>Payment execution must be verified against the payment provider's confirmed response.</li>
+      <li>Duplicate requests and payments must be prevented using unique references and idempotency controls.</li>
+      <li>Failed payments must not be reported as successful or deducted as completed payments.</li>
+      <li>Every action must be recorded in an immutable audit trail.</li>
+    </ul>
+  </div>
+
+</section>
+
+<!-- AUDIT LOGS MANAGEMENT -->
+<section id="auditLogs" class="page">
+
+  <div class="section-header">
+    <div>
+      <h2>Audit Logs & System Activity</h2>
+      <p>Monitor, trace and review all important system activities.</p>
+    </div>
+    <span class="status-badge">Backend Integration Pending</span>
+  </div>
+
+  <!-- AUDIT OVERVIEW -->
+  <div class="grid">
+    <div class="card">
+      <h3>Total Audit Records</h3>
+      <div class="metric">—</div>
+    </div>
+    <div class="card">
+      <h3>User Activities</h3>
+      <div class="metric">—</div>
+    </div>
+    <div class="card">
+      <h3>Financial Activities</h3>
+      <div class="metric">—</div>
+    </div>
+    <div class="card">
+      <h3>Security Alerts</h3>
+      <div class="metric">—</div>
+    </div>
+  </div>
+
+  <!-- AUDIT SEARCH AND FILTERS -->
+  <div class="panel">
+    <h3>Audit Records Search & Filters</h3>
+
+    <div class="toolbar">
+      <input type="search" id="auditSearch"
+             placeholder="Search user, reference or activity">
+
+      <select id="auditCategoryFilter">
+        <option value="">All Activity Categories</option>
+        <option value="authentication">Authentication</option>
+        <option value="user_management">User Management</option>
+        <option value="financial">Financial Activities</option>
+        <option value="wallet">Wallet Activities</option>
+        <option value="approvals">Approval Activities</option>
+        <option value="disbursement">Disbursement Activities</option>
+        <option value="programme">Programme Management</option>
+        <option value="system">System Configuration</option>
+        <option value="security">Security Events</option>
+      </select>
+
+      <select id="auditSeverityFilter">
+        <option value="">All Severity Levels</option>
+        <option value="info">Information</option>
+        <option value="warning">Warning</option>
+        <option value="critical">Critical</option>
+      </select>
+
+      <select id="auditUserFilter">
+        <option value="">All Users</option>
+      </select>
+    </div>
+
+    <div class="form-grid">
+      <div>
+        <label>Start Date</label>
+        <input type="date" id="auditStartDate">
+      </div>
+      <div>
+        <label>End Date</label>
+        <input type="date" id="auditEndDate">
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" disabled>Apply Filters</button>
+      <button type="button" class="secondary" disabled>Reset Filters</button>
+    </div>
+  </div>
+
+  <!-- COMPLETE AUDIT LOG -->
+  <div class="panel">
+    <h3>Complete System Audit Trail</h3>
+
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Date & Time</th>
+            <th>Audit ID</th>
+            <th>User</th>
+            <th>Role</th>
+            <th>Activity Category</th>
+            <th>Action</th>
+            <th>Reference</th>
+            <th>Severity</th>
+            <th>IP / Device</th>
+          </tr>
+        </thead>
+        <tbody id="auditLogsTable">
+          <tr>
+            <td colspan="9" class="empty">
+              Audit records will appear here after secure backend integration.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FINANCIAL AUDIT -->
+  <div class="panel">
+    <h3>Financial Audit & Transaction Trace</h3>
+
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Date & Time</th>
+            <th>Transaction Reference</th>
+            <th>Wallet Type</th>
+            <th>Transaction Type</th>
+            <th>Amount (NGN)</th>
+            <th>Initiated By</th>
+            <th>Approved By</th>
+            <th>Final Status</th>
+          </tr>
+        </thead>
+        <tbody id="financialAuditTable">
+          <tr>
+            <td colspan="8" class="empty">
+              Financial audit records will appear after backend integration.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SECURITY EVENTS -->
+  <div class="panel">
+    <h3>Security & Authentication Events</h3>
+
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Date & Time</th>
+            <th>User / Account</th>
+            <th>Event</th>
+            <th>IP / Device</th>
+            <th>Location (If Available)</th>
+            <th>Result</th>
+            <th>Severity</th>
+          </tr>
+        </thead>
+        <tbody id="securityAuditTable">
+          <tr>
+            <td colspan="7" class="empty">
+              Security event records will appear after backend integration.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- AUDIT EXPORT -->
+  <div class="panel">
+    <h3>Audit Records Export</h3>
+
+    <div class="form-grid">
+      <div>
+        <label>Export Category</label>
+        <select id="auditExportCategory">
+          <option value="all">All Audit Records</option>
+          <option value="financial">Financial Audit</option>
+          <option value="authentication">Authentication Logs</option>
+          <option value="security">Security Events</option>
+          <option value="administrative">Administrative Activities</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Export Format</label>
+        <select id="auditExportFormat">
+          <option value="csv">CSV</option>
+          <option value="xlsx">Excel (XLSX)</option>
+          <option value="pdf">PDF</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" disabled>Export Audit Records</button>
+    </div>
+
+    <p class="notice">
+      Export functionality will be enabled after backend integration.
+      Access to sensitive audit records will be restricted by role.
+    </p>
+  </div>
+
+  <!-- AUDIT SECURITY POLICY -->
+  <div class="notice">
+    <strong>Audit Integrity & Security Policy</strong>
+    <ul>
+      <li>Audit records must be generated by trusted server-side processes.</li>
+      <li>Audit records must not be editable or deletable through the dashboard.</li>
+      <li>Every financial action must retain its initiating user and approval history.</li>
+      <li>Failed login attempts and unauthorised access attempts must be recorded.</li>
+      <li>Sensitive passwords, secret keys and authentication tokens must never appear in audit records.</li>
+      <li>Audit access and exports must themselves be recorded.</li>
+      <li>Audit records must be protected against unauthorised alteration or deletion.</li>
+    </ul>
+  </div>
+
+</section>
+
+<!-- NOTIFICATIONS & ALERTS MANAGEMENT -->
+<section id="notifications" class="page">
+
+  <div class="section-header">
+    <div>
+      <h2>Notifications & Alerts</h2>
+      <p>Monitor system notifications, financial alerts and security events.</p>
+    </div>
+    <span class="status-badge">Backend Integration Pending</span>
+  </div>
+
+  <!-- NOTIFICATION OVERVIEW -->
+  <div class="grid">
+    <div class="card">
+      <h3>Total Notifications</h3>
+      <div class="metric">—</div>
+    </div>
+    <div class="card">
+      <h3>Unread Notifications</h3>
+      <div class="metric">—</div>
+    </div>
+    <div class="card">
+      <h3>Critical Alerts</h3>
+      <div class="metric">—</div>
+    </div>
+    <div class="card">
+      <h3>Delivery Failures</h3>
+      <div class="metric">—</div>
+    </div>
+  </div>
+
+  <!-- NOTIFICATION FILTERS -->
+  <div class="panel">
+    <h3>Notification Centre</h3>
+
+    <div class="toolbar">
+      <input type="search" id="notificationSearch"
+             placeholder="Search notifications">
+
+      <select id="notificationCategoryFilter">
+        <option value="">All Categories</option>
+        <option value="system">System Notifications</option>
+        <option value="transaction">Transaction Alerts</option>
+        <option value="approval">Approval Alerts</option>
+        <option value="disbursement">Disbursement Alerts</option>
+        <option value="security">Security Alerts</option>
+        <option value="user">User Notifications</option>
+      </select>
+
+      <select id="notificationStatusFilter">
+        <option value="">All Statuses</option>
+        <option value="unread">Unread</option>
+        <option value="read">Read</option>
+        <option value="archived">Archived</option>
+      </select>
+
+      <select id="notificationSeverityFilter">
+        <option value="">All Severity Levels</option>
+        <option value="info">Information</option>
+        <option value="warning">Warning</option>
+        <option value="critical">Critical</option>
+      </select>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" disabled>Mark Selected as Read</button>
+      <button type="button" class="secondary" disabled>Archive Selected</button>
+    </div>
+
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Notification ID</th>
+            <th>Date & Time</th>
+            <th>Category</th>
+            <th>Title</th>
+            <th>Recipient</th>
+            <th>Severity</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="notificationsTable">
+          <tr>
+            <td colspan="8" class="empty">
+              Notifications will appear here after backend integration.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CREATE SYSTEM ANNOUNCEMENT -->
+  <div class="panel">
+    <h3>Create System Announcement</h3>
+
+    <form id="announcementForm">
+      <div class="form-grid">
+
+        <div>
+          <label>Announcement Title</label>
+          <input type="text" id="announcementTitle"
+                 placeholder="Enter announcement title" required>
+        </div>
+
+        <div>
+          <label>Announcement Category</label>
+          <select id="announcementCategory" required>
+            <option value="">Select category</option>
+            <option value="system">System Update</option>
+            <option value="maintenance">Scheduled Maintenance</option>
+            <option value="security">Security Notice</option>
+            <option value="general">General Announcement</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Target Audience</label>
+          <select id="announcementAudience" required>
+            <option value="">Select audience</option>
+            <option value="all">All Authorised Users</option>
+            <option value="super_admin">Super Admins</option>
+            <option value="finance_officer">Finance Officers</option>
+            <option value="approver">Approvers</option>
+            <option value="agent">Agents</option>
+            <option value="viewer">Viewers</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Priority</label>
+          <select id="announcementPriority" required>
+            <option value="info">Information</option>
+            <option value="warning">Warning</option>
+            <option value="critical">Critical</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Publish Date & Time</label>
+          <input type="datetime-local" id="announcementPublishDate">
+        </div>
+
+        <div>
+          <label>Expiry Date & Time</label>
+          <input type="datetime-local" id="announcementExpiryDate">
+        </div>
+
+      </div>
+
+      <div style="margin-top:16px;">
+        <label>Announcement Message</label>
+        <textarea id="announcementMessage" rows="4"
+                  placeholder="Write the announcement message"
+                  required></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" disabled>Publish Announcement</button>
+        <button type="reset" class="secondary">Clear Form</button>
+      </div>
+
+      <p class="notice">
+        Only authorised users will be able to publish system-wide announcements.
+        Publishing will be enabled after backend integration.
+      </p>
+    </form>
+  </div>
+
+  <!-- DELIVERY MONITORING -->
+  <div class="panel">
+    <h3>Notification Delivery Monitoring</h3>
+
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Notification Reference</th>
+            <th>Recipient</th>
+            <th>Delivery Channel</th>
+            <th>Provider Reference</th>
+            <th>Sent At</th>
+            <th>Delivery Status</th>
+          </tr>
+        </thead>
+        <tbody id="notificationDeliveryTable">
+          <tr>
+            <td colspan="6" class="empty">
+              Delivery records will appear after email, SMS or push-provider integration.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- NOTIFICATION PREFERENCES -->
+  <div class="panel">
+    <h3>Notification Preferences</h3>
+
+    <p>Configure which notification channels are available to authorised users.</p>
+
+    <form id="notificationPreferencesForm">
+
+      <div class="form-grid">
+        <div>
+          <label>Email Notifications</label>
+          <select id="notificationEmailNotifications"
+            <option value="enabled">Enabled</option>
+            <option value="disabled">Disabled</option>
+          </select>
+        </div>
+
+        <div>
+          <label>SMS Notifications</label>
+          <select id="notificationSmsNotifications">
+            <option value="enabled">Enabled</option>
+            <option value="disabled">Disabled</option>
+          </select>
+        </div>
+
+        <div>
+          <label>In-App Notifications</label>
+          <select id="inAppNotifications">
+            <option value="enabled">Enabled</option>
+            <option value="disabled">Disabled</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Security Alerts</label>
+          <select id="securityNotifications">
+            <option value="enabled">Enabled</option>
+            <option value="disabled">Disabled</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" disabled>Save Preferences</button>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- NOTIFICATION HISTORY -->
+  <div class="panel">
+    <h3>Announcement & Notification History</h3>
+
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Date Published</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Audience</th>
+            <th>Published By</th>
+            <th>Recipients</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="announcementHistoryTable">
+          <tr>
+            <td colspan="7" class="empty">
+              Announcement history will appear after backend integration.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="notice">
+    <strong>Notification Security & Delivery Policy</strong>
+    <ul>
+      <li>Notifications must be delivered only to authorised recipients.</li>
+      <li>Financial alerts must not expose passwords, PINs, secret keys or full sensitive account details.</li>
+      <li>Critical security alerts must be prioritised and recorded in the audit trail.</li>
+      <li>Failed delivery attempts must be recorded for monitoring and retry.</li>
+      <li>SMS, email and push notifications require approved provider integration.</li>
+      <li>Publishing, archiving and preference changes must be permission-controlled and audited.</li>
+    </ul>
+  </div>
+
+</section>
+
+<!-- BENEFICIARY VERIFICATION & KYC MANAGEMENT -->
+<section id="beneficiaryKyc" class="page">
+
+  <div class="section-header">
+    <div>
+      <h2>Beneficiary Verification & KYC</h2>
+      <p>Review beneficiary identity, eligibility documents and verification status.</p>
+    </div>
+    <span class="status-badge">Backend Integration Pending</span>
+  </div>
+
+  <!-- KYC OVERVIEW -->
+  <div class="grid">
+    <div class="card">
+      <h3>Total KYC Applications</h3>
+      <div class="metric">—</div>
+    </div>
+    <div class="card">
+      <h3>Pending Review</h3>
+      <div class="metric">—</div>
+    </div>
+    <div class="card">
+      <h3>Verified Beneficiaries</h3>
+      <div class="metric">—</div>
+    </div>
+    <div class="card">
+      <h3>Rejected Applications</h3>
+      <div class="metric">—</div>
+    </div>
+  </div>
+
+  <!-- KYC SEARCH AND FILTERS -->
+  <div class="panel">
+    <h3>KYC Application Directory</h3>
+
+    <div class="toolbar">
+      <input type="search" id="kycSearch"
+             placeholder="Search beneficiary ID or name">
+
+      <select id="kycStatusFilter">
+        <option value="">All Verification Statuses</option>
+        <option value="pending">Pending</option>
+        <option value="under_review">Under Review</option>
+        <option value="verified">Verified</option>
+        <option value="rejected">Rejected</option>
+        <option value="requires_resubmission">Requires Resubmission</option>
+      </select>
+
+      <select id="kycDocumentFilter">
+        <option value="">All Document Statuses</option>
+        <option value="submitted">Submitted</option>
+        <option value="missing">Missing</option>
+        <option value="under_review">Under Review</option>
+        <option value="accepted">Accepted</option>
+        <option value="rejected">Rejected</option>
+      </select>
+    </div>
+
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Beneficiary ID</th>
+            <th>Full Name</th>
+            <th>Phone</th>
+            <th>LGA</th>
+            <th>Documents</th>
+            <th>Submitted Date</th>
+            <th>Verification Status</th>
+            <th>Assigned Officer</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="kycApplicationsTable">
+          <tr>
+            <td colspan="9" class="empty">
+              KYC applications will appear here after backend integration.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- KYC REVIEW -->
+  <div class="panel">
+    <h3>Beneficiary Verification Review</h3>
+
+    <form id="kycReviewForm">
+
+      <div class="form-grid">
+
+        <div>
+          <label>Beneficiary ID</label>
+          <input type="text" id="kycBeneficiaryId"
+                 placeholder="Select beneficiary from directory" required>
+        </div>
+
+        <div>
+          <label>Beneficiary Full Name</label>
+          <input type="text" id="kycBeneficiaryName"
+                 placeholder="Verified record name" disabled>
+        </div>
+
+        <div>
+          <label>Verification Officer</label>
+          <input type="text" id="kycOfficer"
+                 placeholder="Authenticated officer assigned by backend" disabled>
+        </div>
+
+        <div>
+          <label>Verification Status</label>
+          <select id="kycReviewStatus" required>
+            <option value="">Select decision</option>
+            <option value="under_review">Under Review</option>
+            <option value="verified">Verified</option>
+            <option value="rejected">Rejected</option>
+            <option value="requires_resubmission">Requires Resubmission</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Identity Document Type</label>
+          <select id="kycIdentityType">
+            <option value="">Select document type</option>
+            <option value="nin">National Identification Number (NIN)</option>
+            <option value="voter_card">Voter Card</option>
+            <option value="drivers_license">Driver's Licence</option>
+            <option value="passport">International Passport</option>
+            <option value="other">Other Approved Document</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Document Review Status</label>
+          <select id="kycDocumentStatus">
+            <option value="">Select status</option>
+            <option value="submitted">Submitted</option>
+            <option value="under_review">Under Review</option>
+            <option value="accepted">Accepted</option>
+            <option value="rejected">Rejected</option>
+            <option value="missing">Missing</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div style="margin-top:16px;">
+        <label>Verification Findings</label>
+        <textarea id="kycFindings" rows="3"
+                  placeholder="Record verification findings and observations"></textarea>
+      </div>
+
+      <div style="margin-top:16px;">
+        <label>Reason for Rejection / Resubmission (If Applicable)</label>
+        <textarea id="kycDecisionReason" rows="3"
+                  placeholder="Provide a clear reason where applicable"></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" disabled>Submit Verification Decision</button>
+        <button type="reset" class="secondary">Clear Form</button>
+      </div>
+
+      <p class="notice">
+        Verification decisions will be submitted to the secure backend.
+        Only authorised verification officers can review and update KYC status.
+      </p>
+
+    </form>
+  </div>
+
+  <!-- DOCUMENT REVIEW -->
+  <div class="panel">
+    <h3>Supporting Documents Review</h3>
+
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Document Reference</th>
+            <th>Beneficiary ID</th>
+            <th>Document Type</th>
+            <th>Date Submitted</th>
+            <th>Review Status</th>
+            <th>Reviewed By</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="kycDocumentsTable">
+          <tr>
+            <td colspan="7" class="empty">
+              Document records will appear after secure document-storage integration.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="notice">
+      Identity documents must be stored in private, access-controlled storage.
+      Do not place NIN, passport images or other sensitive documents in public folders.
+    </p>
+  </div>
+
+  <!-- DUPLICATE DETECTION -->
+  <div class="panel">
+    <h3>Duplicate Beneficiary Detection</h3>
+
+    <div class="form-grid">
+      <div>
+        <label>Search Reference</label>
+        <input type="text" id="kycDuplicateSearch"
+               placeholder="Enter beneficiary ID or approved matching reference">
+      </div>
+
+      <div>
+        <label>Matching Criteria</label>
+        <select id="kycDuplicateCriteria">
+          <option value="beneficiary_id">Beneficiary ID</option>
+          <option value="phone">Phone Number</option>
+          <option value="identity_hash">Protected Identity Match</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" disabled>Run Duplicate Check</button>
+    </div>
+
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Match Reference</th>
+            <th>Beneficiary Record</th>
+            <th>Matching Type</th>
+            <th>Match Review Status</th>
+            <th>Reviewed By</th>
+          </tr>
+        </thead>
+        <tbody id="kycDuplicateTable">
+          <tr>
+            <td colspan="5" class="empty">
+              Duplicate screening results will appear after backend integration.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- VERIFICATION HISTORY -->
+  <div class="panel">
+    <h3>Verification History & Decisions</h3>
+
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Date & Time</th>
+            <th>Beneficiary ID</th>
+            <th>Previous Status</th>
+            <th>New Status</th>
+            <th>Decision</th>
+            <th>Officer</th>
+            <th>Reason / Remarks</th>
+          </tr>
+        </thead>
+        <tbody id="kycHistoryTable">
+          <tr>
+            <td colspan="7" class="empty">
+              Verification history will appear after backend integration.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="notice">
+    <strong>KYC Privacy & Verification Policy</strong>
+    <ul>
+      <li>Collect only identity information necessary for lawful programme administration.</li>
+      <li>Use approved and lawful verification methods.</li>
+      <li>Never display full NIN, passport numbers or sensitive identity documents in ordinary tables.</li>
+      <li>Use role-based access and record every document access and verification decision.</li>
+      <li>Potential duplicate matches must be reviewed by an authorised officer; automated matching alone must not reject a beneficiary.</li>
+      <li>Verification must be separate from political affiliation, campaign participation and voting preference.</li>
+      <li>Apply appropriate retention and deletion policies to personal documents.</li>
+    </ul>
+  </div>
+
+</section>
+
 </main>
 <footer>Digital Agent Wallet & Controlled Transaction Management System · Starter Template V1.0</footer>
+
 <script>
 "use strict";
-const KEY="digitalAgentWalletDemoV1";
-let db={agents:[],transactions:[],settings:{name:"Digital Agent Wallet"}};
-try{const saved=localStorage.getItem(KEY);if(saved)db={...db,...JSON.parse(saved)}}catch(e){}
-const money=n=>"₦"+Number(n||0).toLocaleString("en-NG",{minimumFractionDigits:2,maximumFractionDigits:2});
-const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-function save(){localStorage.setItem(KEY,JSON.stringify(db));render()}
-function statusTag(s){return `<span class="status ${esc(s)}">${esc(s)}</span>`}
-function render(){
- document.getElementById("totalAgents").textContent=db.agents.length;
- document.getElementById("pendingCount").textContent=db.transactions.filter(t=>t.status==="Pending").length;
- document.getElementById("completedCount").textContent=db.transactions.filter(t=>t.status==="Completed").length;
- const balance=db.transactions.reduce((sum,t)=>t.status==="Completed"?sum+(t.type==="Deposit"?t.amount:t.type==="Withdrawal"?-t.amount:0):sum,0);
- document.getElementById("ledgerBalance").textContent=money(balance);
- document.getElementById("reportTotal").textContent=db.transactions.length;
- document.getElementById("reportApproved").textContent=db.transactions.filter(t=>t.status==="Completed").length;
- document.getElementById("reportRejected").textContent=db.transactions.filter(t=>t.status==="Rejected").length;
- document.getElementById("reportPending").textContent=db.transactions.filter(t=>t.status==="Pending").length;
- const agentOptions='<option value="">Zaɓi agent</option>'+db.agents.map(a=>`<option value="${esc(a.id)}">${esc(a.id)} — ${esc(a.name)}</option>`).join("");
- document.getElementById("agentSelect").innerHTML=agentOptions;
- document.getElementById("agentsTable").innerHTML=db.agents.length?`<div class="tablewrap"><table><thead><tr><th>Agent ID</th><th>Name</th><th>Phone</th><th>Location</th><th>Status</th><th>Action</th></tr></thead><tbody>${db.agents.map((a,i)=>`<tr><td>${esc(a.id)}</td><td>${esc(a.name)}</td><td>${esc(a.phone)}</td><td>${esc(a.location)}</td><td>${esc(a.status)}</td><td><button class="secondary" onclick="toggleAgent(${i})">${a.status==="Suspended"?"Activate":"Suspend"}</button></td></tr>`).join("")}</tbody></table></div>`:'<div class="empty">Ba a ƙara agent ba.</div>';
- const rows=db.transactions.map((t,i)=>`<tr><td>${esc(t.ref)}</td><td>${esc(t.agent)}</td><td>${esc(t.type)}</td><td>${money(t.amount)}</td><td>${statusTag(t.status)}</td><td>${esc(t.reason)}</td><td>${t.status==="Pending"?`<button class="secondary" onclick="approveTx(${i})">Approve</button> <button class="danger" onclick="rejectTx(${i})">Reject</button>`:"—"}</td></tr>`).join("");
- const table=rows?`<div class="tablewrap"><table><thead><tr><th>Reference</th><th>Agent</th><th>Type</th><th>Amount</th><th>Status</th><th>Reason</th><th>Action</th></tr></thead><tbody>${rows}</tbody></table></div>`:'<div class="empty">Babu transaction tukuna.</div>';
- document.getElementById("transactionsTable").innerHTML=table;
- document.getElementById("approvalsTable").innerHTML=db.transactions.some(t=>t.status==="Pending")?table:'<div class="empty">Babu buƙata da ke jira.</div>';
- const recent=db.transactions.slice(-5).reverse();
- document.getElementById("recentTransactions").innerHTML=recent.length?`<div class="tablewrap"><table><thead><tr><th>Reference</th><th>Agent</th><th>Type</th><th>Amount</th><th>Status</th></tr></thead><tbody>${recent.map(t=>`<tr><td>${esc(t.ref)}</td><td>${esc(t.agent)}</td><td>${esc(t.type)}</td><td>${money(t.amount)}</td><td>${statusTag(t.status)}</td></tr>`).join("")}</tbody></table></div>`:'<div class="empty">Babu transaction tukuna.</div>';
+
+document.addEventListener("DOMContentLoaded", async function () {
+
+  
+  // =====================================
+  // 0. AUTHENTICATION GUARD
+  // =====================================
+
+  const accessToken = sessionStorage.getItem("wallet_access_token");
+
+  if (!accessToken) {
+    window.location.replace("login.html");
+    return;
+  }
+
+  try {
+    const authResponse = await fetch(
+      "http://localhost:5000/api/auth/me",
+      {
+        method: "GET",
+        headers: {
+          "Authorization": "Bearer " + accessToken
+        }
+      }
+    );
+
+    const authResult = await authResponse.json();
+
+    if (!authResponse.ok || !authResult.success) {
+      sessionStorage.removeItem("wallet_access_token");
+      sessionStorage.removeItem("wallet_user");
+      window.location.replace("login.html");
+      return;
+    }
+
+    sessionStorage.setItem(
+      "wallet_user",
+      JSON.stringify(authResult.user)
+    );
+
+  } catch (error) {
+    sessionStorage.removeItem("wallet_access_token");
+    sessionStorage.removeItem("wallet_user");
+    window.location.replace("login.html");
+    return;
+  }
+
+// =====================================
+// LOGOUT SYSTEM
+// =====================================
+
+const storedUser = JSON.parse(
+  sessionStorage.getItem("wallet_user") || "null"
+);
+
+const userLabel = document.getElementById("loggedInUser");
+
+if (storedUser && userLabel) {
+  userLabel.textContent =
+    storedUser.email + " (" + storedUser.role + ")";
 }
-window.toggleAgent=i=>{db.agents[i].status=db.agents[i].status==="Suspended"?"Active":"Suspended";save()};
-window.approveTx=i=>{if(db.transactions[i].status!=="Pending")return;db.transactions[i].status="Completed";db.transactions[i].approvedAt=new Date().toISOString();save()};
-window.rejectTx=i=>{if(db.transactions[i].status!=="Pending")return;db.transactions[i].status="Rejected";db.transactions[i].rejectedAt=new Date().toISOString();save()};
-document.querySelectorAll("nav button").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.getElementById(b.dataset.page).classList.add("active")}));
-document.getElementById("agentForm").addEventListener("submit",e=>{e.preventDefault();const f=new FormData(e.target);const a=Object.fromEntries(f.entries());if(db.agents.some(x=>x.id.toLowerCase()===a.id.toLowerCase()))return alert("Wannan Agent ID ya riga ya kasance.");db.agents.push(a);e.target.reset();save();alert("An ajiye agent a demo.");});
-document.getElementById("txForm").addEventListener("submit",e=>{e.preventDefault();const f=new FormData(e.target);const t=Object.fromEntries(f.entries());t.amount=Number(t.amount);if(db.transactions.some(x=>x.ref.toLowerCase()===t.ref.toLowerCase()))return alert("Wannan reference ya riga ya kasance.");if(!db.agents.some(a=>a.id===t.agent))return alert("Da fatan zaɓi agent mai rajista.");t.status="Pending";t.createdAt=new Date().toISOString();db.transactions.push(t);e.target.reset();save();alert("An tura buƙatar demo domin approval.");});
-function downloadCSV(filename,rows){if(!rows.length)return alert("Babu bayanan da za a fitar.");const cols=[...new Set(rows.flatMap(r=>Object.keys(r)))];const csv=[cols.join(","),...rows.map(r=>cols.map(c=>`"${String(r[c]??"").replace(/"/g,'""')}"`).join(","))].join("\r\n");const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8;"}));a.download=filename;a.click();URL.revokeObjectURL(a.href)}
-document.getElementById("exportAgents").onclick=()=>downloadCSV("agents-demo.csv",db.agents);
-document.getElementById("exportTx").onclick=()=>downloadCSV("transactions-demo.csv",db.transactions);
-document.getElementById("saveSettings").onclick=()=>{db.settings.name=document.getElementById("businessName").value;save();document.getElementById("settingsMsg").textContent="An adana saitunan display a browser."};
-document.getElementById("resetData").onclick=()=>{if(confirm("Ka tabbatar kana son goge duk demo data?")){db={agents:[],transactions:[],settings:{name:"Digital Agent Wallet"}};save()}};
-render();
+
+document.getElementById("logoutButton").addEventListener("click", function () {
+  const confirmLogout = confirm("Are you sure you want to logout?");
+
+  if (!confirmLogout) return;
+
+  sessionStorage.removeItem("wallet_access_token");
+  sessionStorage.removeItem("wallet_user");
+
+  window.location.replace("login.html");
+});
+
+
+  // =====================================
+  // 1. PAGE NAVIGATION
+  // =====================================
+
+  const navButtons = document.querySelectorAll(
+    "nav button[data-page]"
+  );
+
+  const pages = document.querySelectorAll(".page");
+
+  function openPage(pageId, clickedButton) {
+    const targetPage = document.getElementById(pageId);
+
+    if (!targetPage) {
+      console.error("Page not found:", pageId);
+      return;
+    }
+
+    pages.forEach(function (page) {
+      page.classList.remove("active");
+    });
+
+    navButtons.forEach(function (button) {
+      button.classList.remove("active");
+      button.removeAttribute("aria-current");
+    });
+
+    targetPage.classList.add("active");
+
+    if (clickedButton) {
+      clickedButton.classList.add("active");
+      clickedButton.setAttribute("aria-current", "page");
+    }
+  }
+
+  navButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      openPage(button.dataset.page, button);
+    });
+  });
+
+
+  // =====================================
+  // 2. FRONTEND NOTICE
+  // =====================================
+
+  let notice = document.getElementById("frontendNotice");
+
+  if (!notice) {
+    notice = document.createElement("div");
+    notice.id = "frontendNotice";
+    notice.setAttribute("role", "status");
+    notice.setAttribute("aria-live", "polite");
+
+    notice.style.cssText = `
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      max-width: 360px;
+      padding: 14px 18px;
+      background: #172554;
+      color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.2);
+      font-size: 14px;
+      line-height: 1.5;
+      z-index: 9999;
+      display: none;
+    `;
+
+    document.body.appendChild(notice);
+  }
+
+  function showNotice(message) {
+    notice.textContent = message;
+    notice.style.display = "block";
+
+    window.clearTimeout(showNotice.timer);
+
+    showNotice.timer = window.setTimeout(function () {
+      notice.style.display = "none";
+    }, 5000);
+  }
+
+
+// =====================================
+// 3. PROTECT ALL FORMS
+// =====================================
+
+const allForms = document.querySelectorAll("form");
+
+allForms.forEach(function (form) {
+
+  // User Management has its own secure API handler
+  if (form.id === "systemUserForm") {
+    return;
+  }
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    showNotice(
+      "This feature is awaiting secure backend integration. No information has been saved."
+    );
+  });
+
+});
+
+  // =====================================
+  // 4. INITIAL PAGE
+  // =====================================
+
+  const activePage = document.querySelector(".page.active");
+
+  if (activePage) {
+    const activeButton = document.querySelector(
+      'nav button[data-page="' + activePage.id + '"]'
+    );
+
+    if (activeButton) {
+      activeButton.classList.add("active");
+      activeButton.setAttribute("aria-current", "page");
+    }
+  }
+
+  // =====================================
+  // 5. WALLET ROLE MENU CONTROL
+  // =====================================
+
+  (function applyWalletRoleMenu() {
+    const walletUser = JSON.parse(
+      sessionStorage.getItem("wallet_user") || "null"
+    );
+
+    const walletRole = walletUser ? walletUser.role : null;
+
+    const walletRolePermissions = {
+      super_admin: [
+        "dashboard", "agentWallet", "beneficiaryWallet",
+        "beneficiaryKyc", "programmes", "disbursements",
+        "auditLogs", "notifications", "agents", "users",
+        "transactions", "approvals", "reports", "settings"
+      ],
+
+      finance_officer: [
+        "dashboard", "agentWallet", "beneficiaryWallet",
+        "beneficiaryKyc", "programmes", "disbursements",
+        "notifications", "agents", "transactions", "reports"
+      ],
+
+      approver: [
+        "dashboard", "programmes", "disbursements",
+        "notifications", "transactions", "approvals", "reports"
+      ],
+
+      agent: [
+        "dashboard", "agentWallet", "notifications",
+        "transactions", "reports"
+      ],
+
+      viewer: [
+        "dashboard", "agentWallet", "beneficiaryWallet",
+        "beneficiaryKyc", "programmes", "disbursements",
+        "auditLogs", "notifications", "agents",
+        "transactions", "reports"
+      ]
+    };
+
+    const walletAllowedPages =
+      walletRolePermissions[walletRole] || [];
+
+    document.querySelectorAll("nav button[data-page]").forEach(
+      function (button) {
+        button.style.display =
+          walletAllowedPages.includes(button.dataset.page)
+            ? ""
+            : "none";
+      }
+    );
+
+    const activeWalletPage = document.querySelector(".page.active");
+
+    if (
+      activeWalletPage &&
+      !walletAllowedPages.includes(activeWalletPage.id)
+    ) {
+      const firstWalletButton = document.querySelector(
+        'nav button[data-page="' + walletAllowedPages[0] + '"]'
+      );
+
+      if (firstWalletButton) {
+        firstWalletButton.click();
+      }
+    }
+  })();
+
+
+  
+// =====================================
+// 6. USER MANAGEMENT MODULE
+// SUPER ADMIN ONLY
+// =====================================
+
+(async function initializeUserManagement() {
+
+  const userPage = document.getElementById("users");
+
+  if (!userPage) return;
+
+  const currentUser = JSON.parse(
+    sessionStorage.getItem("wallet_user") || "null"
+  );
+
+  if (!currentUser || currentUser.role !== "super_admin") {
+    return;
+  }
+
+  const token = sessionStorage.getItem("wallet_access_token");
+
+  const userForm = document.getElementById("systemUserForm");
+  const userTable = document.getElementById("systemUsersTable");
+  const searchInput = document.getElementById("systemUserSearch");
+  const roleFilter = document.getElementById("systemUserRoleFilter");
+  const statusFilter = document.getElementById("systemUserStatusFilter");
+
+  if (!userForm || !userTable) return;
+
+  const API_URL = "http://localhost:5000/api/users";
+
+  let allUsers = [];
+
+  const roleNames = {
+    super_admin: "Super Admin",
+    finance_officer: "Finance Officer",
+    approver: "Approver",
+    agent: "Agent",
+    viewer: "Auditor / Viewer"
+  };
+
+  function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, function (char) {
+      return {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      }[char];
+    });
+  }
+
+  function getStatus(user) {
+    return user.is_active === true ? "active" : "suspended";
+  }
+
+  // UPDATE USER STATISTICS
+  function updateStatistics(users) {
+
+    const metrics = userPage.querySelectorAll(
+      ".grid .card .metric"
+    );
+
+    if (metrics.length < 4) return;
+
+    metrics[0].textContent = users.length;
+
+    metrics[1].textContent = users.filter(
+      user => getStatus(user) === "active"
+    ).length;
+
+    // Invitations are not implemented yet
+    metrics[2].textContent = "0";
+
+    metrics[3].textContent = users.filter(
+      user => getStatus(user) === "suspended"
+    ).length;
+  }
+
+  // DISPLAY USERS
+  
+function renderUsers() {
+
+  const searchTerm = (
+    searchInput?.value || ""
+  ).trim().toLowerCase();
+
+  const selectedRole = roleFilter?.value || "";
+  const selectedStatus = statusFilter?.value || "";
+
+  const filteredUsers = allUsers.filter(user => {
+
+    const matchesSearch =
+      (user.email || "").toLowerCase().includes(searchTerm) ||
+      (user.id || "").toLowerCase().includes(searchTerm);
+
+    const matchesRole =
+      !selectedRole || user.role === selectedRole;
+
+    const matchesStatus =
+      !selectedStatus || getStatus(user) === selectedStatus;
+
+    return matchesSearch && matchesRole && matchesStatus;
+  });
+
+  if (filteredUsers.length === 0) {
+
+    userTable.innerHTML = `
+      <tr>
+        <td colspan="8" class="empty">
+          No matching users found.
+        </td>
+      </tr>
+    `;
+
+    return;
+  }
+
+  userTable.innerHTML = filteredUsers.map(user => {
+
+    const status = getStatus(user);
+
+    const createdDate = user.created_at
+      ? new Date(user.created_at).toLocaleDateString()
+      : "—";
+
+    const roleOptions = Object.entries(roleNames)
+      .map(([value, label]) => `
+        <option
+          value="${escapeHTML(value)}"
+          ${user.role === value ? "selected" : ""}
+        >
+          ${escapeHTML(label)}
+        </option>
+      `).join("");
+
+    const roleControl = user.id === currentUser.id
+      ? `<span class="status-badge">Your Role: ${escapeHTML(roleNames[user.role] || user.role)}</span>`
+      : `
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <select
+            data-role-select="${escapeHTML(user.id)}"
+            aria-label="Select role for ${escapeHTML(user.email)}"
+          >
+            ${roleOptions}
+          </select>
+
+          <button
+            type="button"
+            class="secondary"
+            data-role-save="${escapeHTML(user.id)}"
+          >
+            Save Role
+          </button>
+        </div>
+      `;
+
+    const actionButton = user.id === currentUser.id
+      ? `<span class="status-badge">Current Account</span>`
+      : `
+        <button
+          type="button"
+          class="secondary"
+          data-user-action="toggle-status"
+          data-user-id="${escapeHTML(user.id)}"
+        >
+          ${status === "active" ? "Suspend" : "Activate"}
+        </button>
+      `;
+
+    return `
+      <tr>
+        <td>${escapeHTML(user.id)}</td>
+        <td>—</td>
+        <td>${escapeHTML(user.email || "—")}</td>
+        <td>${roleControl}</td>
+        <td>—</td>
+        <td>
+          <span class="status-badge">
+            ${status === "active" ? "Active" : "Suspended"}
+          </span>
+        </td>
+        <td>${escapeHTML(createdDate)}</td>
+        <td>${actionButton}</td>
+      </tr>
+    `;
+
+  }).join("");
+}
+
+
+  // LOAD USERS FROM BACKEND
+  async function loadUsers() {
+
+    userTable.innerHTML = `
+      <tr>
+        <td colspan="8" class="empty">
+          Loading users...
+        </td>
+      </tr>
+    `;
+
+    try {
+
+      const response = await fetch(API_URL, {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + token
+        }
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(
+          result.message || "Unable to load users."
+        );
+      }
+
+      allUsers = result.users || [];
+
+      updateStatistics(allUsers);
+      renderUsers();
+
+    } catch (error) {
+
+      console.error("User Management Error:", error);
+
+      userTable.innerHTML = `
+        <tr>
+          <td colspan="8" class="empty">
+            ${escapeHTML(error.message)}
+          </td>
+        </tr>
+      `;
+
+      showNotice("Unable to load system users.");
+    }
+  }
+
+  // CREATE NEW USER
+  userForm.addEventListener("submit", async function (event) {
+
+    event.preventDefault();
+
+    const email = document.getElementById(
+      "systemUserEmail"
+    ).value.trim();
+
+    const role = document.getElementById(
+      "systemUserRole"
+    ).value;
+
+    const passwordInput = document.getElementById(
+      "systemUserPassword"
+    );
+
+    if (!passwordInput) {
+      showNotice("Password field is not available.");
+      return;
+    }
+
+    const password = passwordInput.value;
+
+    if (!email || !password || !role) {
+      showNotice(
+        "Please complete email, password and role."
+      );
+      return;
+    }
+
+    const submitButton = userForm.querySelector(
+      'button[type="submit"]'
+    );
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Creating...";
+
+    try {
+
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          role
+        })
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(
+          result.message || "User creation failed."
+        );
+      }
+
+      showNotice("New user created successfully.");
+
+      userForm.reset();
+
+      await loadUsers();
+
+    } catch (error) {
+
+      console.error("Create User Error:", error);
+      showNotice(error.message);
+
+    } finally {
+
+      submitButton.disabled = false;
+      submitButton.textContent = "Create User";
+    }
+  });
+
+  // SUSPEND / ACTIVATE USER
+  userTable.addEventListener("click", async function (event) {
+
+    const actionButton = event.target.closest(
+      'button[data-user-action="toggle-status"]'
+    );
+
+    if (!actionButton || !userTable.contains(actionButton)) {
+      return;
+    }
+
+    const userId = actionButton.dataset.userId;
+
+    const user = allUsers.find(
+      item => item.id === userId
+    );
+
+    if (!user) {
+      showNotice("User record could not be found.");
+      return;
+    }
+
+    // Prevent self-suspension
+    if (user.id === currentUser.id) {
+      showNotice("You cannot suspend your own account.");
+      return;
+    }
+
+    const newStatus = !user.is_active;
+
+    const action = newStatus ? "activate" : "suspend";
+
+    const confirmed = window.confirm(
+      `Are you sure you want to ${action} ${user.email}?`
+    );
+
+    if (!confirmed) return;
+
+    actionButton.disabled = true;
+    actionButton.textContent = "Processing...";
+
+    try {
+
+      const response = await fetch(
+        `${API_URL}/${encodeURIComponent(user.id)}/status`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token
+          },
+          body: JSON.stringify({
+            is_active: newStatus
+          })
+        }
+      );
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(
+          result.message || "Unable to update account status."
+        );
+      }
+
+      showNotice(
+        newStatus
+          ? "User account activated successfully."
+          : "User account suspended successfully."
+      );
+
+      await loadUsers();
+
+    } catch (error) {
+
+      console.error("User Status Error:", error);
+      showNotice(error.message);
+
+      actionButton.disabled = false;
+      actionButton.textContent =
+        user.is_active ? "Suspend" : "Activate";
+    }
+  });
+
+
+// =====================================
+// SAVE USER ROLE
+// =====================================
+
+userTable.addEventListener("click", async function (event) {
+
+  const saveButton = event.target.closest(
+    "button[data-role-save]"
+  );
+
+  if (!saveButton || !userTable.contains(saveButton)) {
+    return;
+  }
+
+  const userId = saveButton.dataset.roleSave;
+
+  const user = allUsers.find(
+    item => item.id === userId
+  );
+
+  const roleSelect = userTable.querySelector(
+    `select[data-role-select="${CSS.escape(userId)}"]`
+  );
+
+  if (!user || !roleSelect) {
+    showNotice("User or role selection not found.");
+    return;
+  }
+
+  const newRole = roleSelect.value;
+
+  if (newRole === user.role) {
+    showNotice("No role change has been made.");
+    return;
+  }
+
+  if (user.id === currentUser.id) {
+    showNotice("You cannot change your own role.");
+    return;
+  }
+
+  const confirmed = window.confirm(
+    `Change ${user.email}'s role from ${roleNames[user.role]} to ${roleNames[newRole]}?`
+  );
+
+  if (!confirmed) return;
+
+  saveButton.disabled = true;
+  saveButton.textContent = "Saving...";
+
+  try {
+
+    const response = await fetch(
+      `${API_URL}/${encodeURIComponent(user.id)}/role`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token
+        },
+        body: JSON.stringify({
+          role: newRole
+        })
+      }
+    );
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      throw new Error(
+        result.message || "Unable to update user role."
+      );
+    }
+
+    showNotice("User role updated successfully.");
+
+    await loadUsers();
+
+  } catch (error) {
+
+    console.error("Role Update Error:", error);
+    showNotice(error.message);
+
+    saveButton.disabled = false;
+    saveButton.textContent = "Save Role";
+  }
+
+});
+
+  // SEARCH AND FILTER
+  searchInput?.addEventListener("input", renderUsers);
+
+  roleFilter?.addEventListener("change", renderUsers);
+
+  statusFilter?.addEventListener("change", renderUsers);
+
+  // INITIAL LOAD
+  await loadUsers();
+
+})();
+
+});
 </script>
 </body>
 </html>
