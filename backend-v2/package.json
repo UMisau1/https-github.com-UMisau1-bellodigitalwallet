@@ -1,0 +1,12 @@
+
+{
+  "name": "digital-agent-wallet-backend",
+  "version": "1.0.0",
+  "description": "Digital Agent Wallet Backend API",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  }
+}

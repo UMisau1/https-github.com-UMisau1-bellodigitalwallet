@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ha">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Agent Wallet | V1.0</title>
+<style>
+:root{--navy:#10243a;--blue:#1769aa;--green:#13805c;--bg:#f3f6fa;--text:#172536;--muted:#64748b;--border:#dce4ed;--orange:#b45309}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}
+header{background:var(--navy);color:white;padding:22px 5%;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+header h1{font-size:21px;margin:0 0 5px}header p{margin:0;color:#cbd5e1;font-size:13px}
+.demo{background:#fff3cd;color:#7c4a03;padding:9px 12px;border-radius:8px;font-size:12px;font-weight:bold}
+nav{display:flex;gap:8px;padding:12px 5%;background:white;border-bottom:1px solid var(--border);flex-wrap:wrap}
+nav button{border:0;background:#eef3f8;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:bold;color:var(--navy)}
+nav button.active{background:var(--blue);color:white}
+main{padding:24px 5%;max-width:1400px;margin:auto}.page{display:none}.page.active{display:block}
+h2{margin-top:0;font-size:22px}.sub{color:var(--muted);font-size:14px;margin-top:-8px;margin-bottom:20px}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:18px 0}
+.card,.panel{background:white;border:1px solid var(--border);border-radius:12px;padding:18px;box-shadow:0 2px 7px #10243a08}
+.card .label{font-size:13px;color:var(--muted)}.card .num{font-size:25px;font-weight:bold;margin-top:9px}.card small{color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel h3{margin:0 0 14px;font-size:16px}
+form .fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+label{display:block;font-size:13px;font-weight:bold;margin-bottom:6px}
+input,select,textarea{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:8px;font:inherit;background:white}
+textarea{min-height:80px;resize:vertical}.full{grid-column:1/-1}
+button.primary{background:var(--blue);color:white;border:0;border-radius:8px;padding:11px 15px;font-weight:bold;cursor:pointer}
+button.secondary{background:#e8eef5;color:var(--navy);border:0;border-radius:8px;padding:10px 12px;cursor:pointer}
+button.danger{background:#fee2e2;color:#991b1b;border:0;border-radius:7px;padding:7px 9px;cursor:pointer}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.tablewrap{overflow-x:auto;margin-top:14px}table{width:100%;border-collapse:collapse;min-width:680px}th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--border);font-size:13px}th{background:#f7f9fc;color:#526174}
+.status{padding:5px 8px;border-radius:20px;font-size:11px;font-weight:bold;white-space:nowrap}.Pending{background:#fef3c7;color:#92400e}.Approved{background:#dcfce7;color:#166534}.Rejected{background:#fee2e2;color:#991b1b}.Completed{background:#dbeafe;color:#1d4ed8}
+.note{background:#eff6ff;border-left:4px solid var(--blue);padding:12px 14px;border-radius:7px;font-size:13px;line-height:1.5;margin:14px 0}
+.warning{background:#fff7ed;border-left:4px solid #ea580c;padding:12px 14px;border-radius:7px;font-size:13px;line-height:1.5;margin:14px 0}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}
+.empty{color:var(--muted);font-size:13px;padding:15px 0}
+@media(max-width:900px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2{grid-template-columns:1fr}}
+@media(max-width:540px){main{padding:18px 4%}.cards{grid-template-columns:1fr 1fr}.card{padding:13px}.card .num{font-size:19px}form .fields{grid-template-columns:1fr}.full{grid-column:auto}header{padding:18px 4%}}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>Digital Agent Wallet</h1><p>Controlled Transaction Management System · Template V1.0</p></div>
+  <div class="demo">DEMO ONLY — BA AININ REAL WALLET BA</div>
+</header>
+<nav>
+  <button class="active" data-page="dashboard">Dashboard</button>
+  <button data-page="agents">Agents</button>
+  <button data-page="transactions">Transactions</button>
+  <button data-page="approvals">Approvals</button>
+  <button data-page="reports">Reports</button>
+  <button data-page="settings">Settings & Controls</button>
+</nav>
+<main>
+<section id="dashboard" class="page active">
+  <h2>Dashboard</h2><p class="sub">Takaitaccen halin agents da transactions.</p>
+  <div class="warning"><b>Important:</b> Wannan prototype ne na gwaji. Bayanan suna cikin browser ɗinka kawai. Ba ya aika ko karɓar kuɗi, kuma ba a haɗa shi da banki ko payment gateway ba.</div>
+  <div class="cards">
+    <div class="card"><div class="label">Total Agents</div><div class="num" id="totalAgents">0</div><small>Agents da aka yi rajista</small></div>
+    <div class="card"><div class="label">Pending Approvals</div><div class="num" id="pendingCount">0</div><small>Buƙatun da ke jiran dubawa</small></div>
+    <div class="card"><div class="label">Completed Demo Transactions</div><div class="num" id="completedCount">0</div><small>Gwajin transactions da aka amince</small></div>
+    <div class="card"><div class="label">Demo Ledger Balance</div><div class="num" id="ledgerBalance">₦0.00</div><small>Ƙididdigar gwaji kawai</small></div>
+  </div>
+  <div class="panel"><h3>Recent Transactions</h3><div id="recentTransactions" class="empty">Babu transaction tukuna.</div></div>
+</section>
+<section id="agents" class="page">
+  <h2>Agent Management</h2><p class="sub">Yi rajista da kula da agents.</p>
+  <div class="grid2">
+    <div class="panel"><h3>Register New Agent</h3>
+      <form id="agentForm"><div class="fields">
+        <div><label>Agent ID *</label><input name="id" required placeholder="AG-0001"></div>
+        <div><label>Full Name *</label><input name="name" required placeholder="Cikakken suna"></div>
+        <div><label>Phone Number *</label><input name="phone" required placeholder="080..."></div>
+        <div><label>Location / Branch</label><input name="location" placeholder="Jiha / reshe"></div>
+        <div class="full"><label>Status</label><select name="status"><option>Active</option><option>Suspended</option><option>Pending Verification</option></select></div>
+      </div><div class="actions"><button class="primary">Save Agent</button></div></form>
+    </div>
+    <div class="panel"><h3>Agent Controls</h3><p class="sub">Ka dakatar da agent idan akwai matsala. Wannan demo ne kawai.</p>
+      <div class="note">A tsarin production, agent verification (KYC), role permissions, maker-checker approval, audit logs da secure server-side validation wajibi ne.</div>
+    </div>
+  </div>
+  <div class="panel" style="margin-top:18px"><h3>Registered Agents</h3><div id="agentsTable" class="empty">Ba a ƙara agent ba.</div></div>
+</section>
+<section id="transactions" class="page">
+  <h2>Transaction Entry</h2><p class="sub">Shigar da buƙatar transaction domin a duba kuma a amince da ita.</p>
+  <div class="warning">Kada ka saka PIN, password, OTP, bayanan katin banki ko cikakken bayanan sirrin abokin ciniki a wannan demo.</div>
+  <div class="grid2">
+    <div class="panel"><h3>New Transaction Request</h3>
+      <form id="txForm"><div class="fields">
+        <div><label>Transaction Reference *</label><input name="ref" required placeholder="TX-000001"></div>
+        <div><label>Agent *</label><select name="agent" id="agentSelect" required><option value="">Zaɓi agent</option></select></div>
+        <div><label>Transaction Type *</label><select name="type" required><option value="Deposit">Deposit (demo)</option><option value="Withdrawal">Withdrawal (demo)</option><option value="Transfer">Transfer (demo)</option><option value="Adjustment">Adjustment (demo)</option></select></div>
+        <div><label>Amount (₦) *</label><input name="amount" type="number" min="1" step="0.01" required placeholder="1000.00"></div>
+        <div class="full"><label>Reason / Description *</label><textarea name="reason" required placeholder="Dalilin transaction"></textarea></div>
+      </div><div class="actions"><button class="primary">Submit for Approval</button></div></form>
+    </div>
+    <div class="panel"><h3>Transaction Rules</h3>
+      <ul style="font-size:13px;line-height:1.8;padding-left:18px">
+        <li>Agent ba zai amince da transaction ɗinsa da kansa ba.</li>
+        <li>Buƙata tana fara da matsayin <b>Pending</b>.</li>
+        <li>Mai izini ne kaɗai zai iya Approve ko Reject.</li>
+        <li>A rubuta reference na musamman ga kowane transaction.</li>
+        <li>Production system ya kamata ya yi reconciliation da cikakken audit trail.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="panel" style="margin-top:18px"><h3>All Transactions</h3><div id="transactionsTable" class="empty">Babu transaction tukuna.</div></div>
+</section>
+<section id="approvals" class="page">
+  <h2>Approval Centre</h2><p class="sub">Duba buƙatu kafin a yi alamar amincewa a cikin demo.</p>
+  <div class="note"><b>Maker-checker principle:</b> wanda ya ƙirƙiri buƙata kada ya zama wanda ya amince da ita. Wannan shafin demo bai da login ko tabbatar da matsayin mai amfani; kada a ɗauke shi a matsayin tsarin tsaro na gaske.</div>
+  <div class="panel"><h3>Pending Requests</h3><div id="approvalsTable" class="empty">Babu buƙata da ke jira.</div></div>
+</section>
+<section id="reports" class="page">
+  <h2>Reports & Audit</h2><p class="sub">Duba bayanan demo ko fitar da su zuwa CSV.</p>
+  <div class="cards">
+    <div class="card"><div class="label">Total Requests</div><div class="num" id="reportTotal">0</div></div>
+    <div class="card"><div class="label">Approved / Completed</div><div class="num" id="reportApproved">0</div></div>
+    <div class="card"><div class="label">Rejected</div><div class="num" id="reportRejected">0</div></div>
+    <div class="card"><div class="label">Pending</div><div class="num" id="reportPending">0</div></div>
+  </div>
+  <div class="panel"><h3>Export Data</h3><p class="sub">Za a sauke bayanan da aka rubuta a wannan browser a matsayin CSV.</p><div class="actions"><button class="primary" id="exportAgents">Export Agents CSV</button><button class="primary" id="exportTx">Export Transactions CSV</button></div></div>
+</section>
+<section id="settings" class="page">
+  <h2>Settings & Controls</h2><p class="sub">Saitunan demo da shawarwarin tsarin production.</p>
+  <div class="grid2">
+    <div class="panel"><h3>Basic Configuration</h3>
+      <label>System / Business Name</label><input id="businessName" value="Digital Agent Wallet">
+      <label style="margin-top:12px">Currency</label><select id="currency"><option>NGN — Nigerian Naira</option></select>
+      <div class="actions"><button class="primary" id="saveSettings">Save Display Settings</button></div>
+      <p id="settingsMsg" class="sub"></p>
+    </div>
+    <div class="panel"><h3>Production Checklist</h3>
+      <ul style="font-size:13px;line-height:1.9;padding-left:18px">
+        <li>Secure backend API and database</li><li>Individual login + MFA/2FA</li><li>Roles: Super Admin, Finance, Approver, Agent, Auditor</li><li>Server-side limits and dual approval thresholds</li><li>Immutable audit logs and daily reconciliation</li><li>Encrypted transport, backups and incident response</li><li>Legal/compliance review before handling real funds</li>
+      </ul>
+    </div>
+  </div>
+  <div class="warning"><b>Important:</b> Kada a yi amfani da wannan HTML wajen riƙe kuɗin jama'a ko gudanar da transfer na gaske. Ana buƙatar backend mai tsaro, gwajin tsaro, da tantance ƙa'idojin CBN/Nigeria da suka shafi irin kasuwancin kafin ƙaddamarwa.</div>
+  <div class="panel"><h3>Reset Demo Data</h3><p class="sub">Wannan zai goge agents da transactions da aka adana a browser ɗin nan.</p><button class="danger" id="resetData">Reset All Demo Data</button></div>
+</section>
+</main>
+<footer>Digital Agent Wallet & Controlled Transaction Management System · Starter Template V1.0</footer>
+<script>
+"use strict";
+const KEY="digitalAgentWalletDemoV1";
+let db={agents:[],transactions:[],settings:{name:"Digital Agent Wallet"}};
+try{const saved=localStorage.getItem(KEY);if(saved)db={...db,...JSON.parse(saved)}}catch(e){}
+const money=n=>"₦"+Number(n||0).toLocaleString("en-NG",{minimumFractionDigits:2,maximumFractionDigits:2});
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function save(){localStorage.setItem(KEY,JSON.stringify(db));render()}
+function statusTag(s){return `<span class="status ${esc(s)}">${esc(s)}</span>`}
+function render(){
+ document.getElementById("totalAgents").textContent=db.agents.length;
+ document.getElementById("pendingCount").textContent=db.transactions.filter(t=>t.status==="Pending").length;
+ document.getElementById("completedCount").textContent=db.transactions.filter(t=>t.status==="Completed").length;
+ const balance=db.transactions.reduce((sum,t)=>t.status==="Completed"?sum+(t.type==="Deposit"?t.amount:t.type==="Withdrawal"?-t.amount:0):sum,0);
+ document.getElementById("ledgerBalance").textContent=money(balance);
+ document.getElementById("reportTotal").textContent=db.transactions.length;
+ document.getElementById("reportApproved").textContent=db.transactions.filter(t=>t.status==="Completed").length;
+ document.getElementById("reportRejected").textContent=db.transactions.filter(t=>t.status==="Rejected").length;
+ document.getElementById("reportPending").textContent=db.transactions.filter(t=>t.status==="Pending").length;
+ const agentOptions='<option value="">Zaɓi agent</option>'+db.agents.map(a=>`<option value="${esc(a.id)}">${esc(a.id)} — ${esc(a.name)}</option>`).join("");
+ document.getElementById("agentSelect").innerHTML=agentOptions;
+ document.getElementById("agentsTable").innerHTML=db.agents.length?`<div class="tablewrap"><table><thead><tr><th>Agent ID</th><th>Name</th><th>Phone</th><th>Location</th><th>Status</th><th>Action</th></tr></thead><tbody>${db.agents.map((a,i)=>`<tr><td>${esc(a.id)}</td><td>${esc(a.name)}</td><td>${esc(a.phone)}</td><td>${esc(a.location)}</td><td>${esc(a.status)}</td><td><button class="secondary" onclick="toggleAgent(${i})">${a.status==="Suspended"?"Activate":"Suspend"}</button></td></tr>`).join("")}</tbody></table></div>`:'<div class="empty">Ba a ƙara agent ba.</div>';
+ const rows=db.transactions.map((t,i)=>`<tr><td>${esc(t.ref)}</td><td>${esc(t.agent)}</td><td>${esc(t.type)}</td><td>${money(t.amount)}</td><td>${statusTag(t.status)}</td><td>${esc(t.reason)}</td><td>${t.status==="Pending"?`<button class="secondary" onclick="approveTx(${i})">Approve</button> <button class="danger" onclick="rejectTx(${i})">Reject</button>`:"—"}</td></tr>`).join("");
+ const table=rows?`<div class="tablewrap"><table><thead><tr><th>Reference</th><th>Agent</th><th>Type</th><th>Amount</th><th>Status</th><th>Reason</th><th>Action</th></tr></thead><tbody>${rows}</tbody></table></div>`:'<div class="empty">Babu transaction tukuna.</div>';
+ document.getElementById("transactionsTable").innerHTML=table;
+ document.getElementById("approvalsTable").innerHTML=db.transactions.some(t=>t.status==="Pending")?table:'<div class="empty">Babu buƙata da ke jira.</div>';
+ const recent=db.transactions.slice(-5).reverse();
+ document.getElementById("recentTransactions").innerHTML=recent.length?`<div class="tablewrap"><table><thead><tr><th>Reference</th><th>Agent</th><th>Type</th><th>Amount</th><th>Status</th></tr></thead><tbody>${recent.map(t=>`<tr><td>${esc(t.ref)}</td><td>${esc(t.agent)}</td><td>${esc(t.type)}</td><td>${money(t.amount)}</td><td>${statusTag(t.status)}</td></tr>`).join("")}</tbody></table></div>`:'<div class="empty">Babu transaction tukuna.</div>';
+}
+window.toggleAgent=i=>{db.agents[i].status=db.agents[i].status==="Suspended"?"Active":"Suspended";save()};
+window.approveTx=i=>{if(db.transactions[i].status!=="Pending")return;db.transactions[i].status="Completed";db.transactions[i].approvedAt=new Date().toISOString();save()};
+window.rejectTx=i=>{if(db.transactions[i].status!=="Pending")return;db.transactions[i].status="Rejected";db.transactions[i].rejectedAt=new Date().toISOString();save()};
+document.querySelectorAll("nav button").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.getElementById(b.dataset.page).classList.add("active")}));
+document.getElementById("agentForm").addEventListener("submit",e=>{e.preventDefault();const f=new FormData(e.target);const a=Object.fromEntries(f.entries());if(db.agents.some(x=>x.id.toLowerCase()===a.id.toLowerCase()))return alert("Wannan Agent ID ya riga ya kasance.");db.agents.push(a);e.target.reset();save();alert("An ajiye agent a demo.");});
+document.getElementById("txForm").addEventListener("submit",e=>{e.preventDefault();const f=new FormData(e.target);const t=Object.fromEntries(f.entries());t.amount=Number(t.amount);if(db.transactions.some(x=>x.ref.toLowerCase()===t.ref.toLowerCase()))return alert("Wannan reference ya riga ya kasance.");if(!db.agents.some(a=>a.id===t.agent))return alert("Da fatan zaɓi agent mai rajista.");t.status="Pending";t.createdAt=new Date().toISOString();db.transactions.push(t);e.target.reset();save();alert("An tura buƙatar demo domin approval.");});
+function downloadCSV(filename,rows){if(!rows.length)return alert("Babu bayanan da za a fitar.");const cols=[...new Set(rows.flatMap(r=>Object.keys(r)))];const csv=[cols.join(","),...rows.map(r=>cols.map(c=>`"${String(r[c]??"").replace(/"/g,'""')}"`).join(","))].join("\r\n");const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8;"}));a.download=filename;a.click();URL.revokeObjectURL(a.href)}
+document.getElementById("exportAgents").onclick=()=>downloadCSV("agents-demo.csv",db.agents);
+document.getElementById("exportTx").onclick=()=>downloadCSV("transactions-demo.csv",db.transactions);
+document.getElementById("saveSettings").onclick=()=>{db.settings.name=document.getElementById("businessName").value;save();document.getElementById("settingsMsg").textContent="An adana saitunan display a browser."};
+document.getElementById("resetData").onclick=()=>{if(confirm("Ka tabbatar kana son goge duk demo data?")){db={agents:[],transactions:[],settings:{name:"Digital Agent Wallet"}};save()}};
+render();
+</script>
+</body>
+</html>
